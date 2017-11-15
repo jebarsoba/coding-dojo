@@ -12,10 +12,17 @@ function twoSum(nums, target) {
     }
   }
 
-  return [];
+  throw new Error('No Two Sum solution.');
 }
 
-const nums = [2, 7, 11, 15];
-const target = 9;
+// Sample #1, with solution
+let nums = [2, 7, 11, 15];
+let target = 9;
 
-console.log(twoSum(nums, target));
+console.log('Sample #1: ', twoSum(nums, target));
+
+// Sample #2, no solution
+nums = [2, 8, 11, 15];
+target = 9;
+
+console.log('Sample #2: ', twoSum(nums, target));
