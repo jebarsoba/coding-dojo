@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeService", "PrimeService\PrimeService.csproj", "{82463579-59B3-4905-B1B4-FFFE2E9AD655}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeService", "LeetCodeSolutions\LeetCodeSolutions.csproj", "{82463579-59B3-4905-B1B4-FFFE2E9AD655}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeService.Tests", "PrimeService.Tests\PrimeService.Tests.csproj", "{553D6EE7-D244-40A5-8EF7-CDCE3EA3525C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeService.Tests", "LeetCodeSolutions.Tests\LeetCodeSolutions.Tests.csproj", "{553D6EE7-D244-40A5-8EF7-CDCE3EA3525C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

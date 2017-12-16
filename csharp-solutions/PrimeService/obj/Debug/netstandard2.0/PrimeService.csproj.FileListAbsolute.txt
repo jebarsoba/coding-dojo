@@ -1,8 +1,0 @@
-C:\dev\leetcode-solutions\csharp-solutions\PrimeService\bin\Debug\netstandard2.0\PrimeService.deps.json
-C:\dev\leetcode-solutions\csharp-solutions\PrimeService\bin\Debug\netstandard2.0\PrimeService.dll
-C:\dev\leetcode-solutions\csharp-solutions\PrimeService\bin\Debug\netstandard2.0\PrimeService.pdb
-C:\dev\leetcode-solutions\csharp-solutions\PrimeService\obj\Debug\netstandard2.0\PrimeService.csproj.CoreCompileInputs.cache
-C:\dev\leetcode-solutions\csharp-solutions\PrimeService\obj\Debug\netstandard2.0\PrimeService.AssemblyInfoInputs.cache
-C:\dev\leetcode-solutions\csharp-solutions\PrimeService\obj\Debug\netstandard2.0\PrimeService.AssemblyInfo.cs
-C:\dev\leetcode-solutions\csharp-solutions\PrimeService\obj\Debug\netstandard2.0\PrimeService.dll
-C:\dev\leetcode-solutions\csharp-solutions\PrimeService\obj\Debug\netstandard2.0\PrimeService.pdb
