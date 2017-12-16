@@ -1,0 +1,15 @@
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\bin\Debug\netcoreapp2.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\bin\Debug\netcoreapp2.0\xunit.runner.reporters.netcoreapp10.dll
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\bin\Debug\netcoreapp2.0\xunit.runner.utility.netcoreapp10.dll
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\bin\Debug\netcoreapp2.0\PrimeService.Tests.deps.json
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\bin\Debug\netcoreapp2.0\PrimeService.Tests.runtimeconfig.json
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\bin\Debug\netcoreapp2.0\PrimeService.Tests.runtimeconfig.dev.json
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\bin\Debug\netcoreapp2.0\PrimeService.Tests.dll
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\bin\Debug\netcoreapp2.0\PrimeService.Tests.pdb
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\bin\Debug\netcoreapp2.0\PrimeService.dll
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\bin\Debug\netcoreapp2.0\PrimeService.pdb
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\obj\Debug\netcoreapp2.0\PrimeService.Tests.csproj.CoreCompileInputs.cache
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\obj\Debug\netcoreapp2.0\PrimeService.Tests.AssemblyInfoInputs.cache
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\obj\Debug\netcoreapp2.0\PrimeService.Tests.AssemblyInfo.cs
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\obj\Debug\netcoreapp2.0\PrimeService.Tests.dll
+C:\dev\leetcode-solutions\csharp-solutions\PrimeService.Tests\obj\Debug\netcoreapp2.0\PrimeService.Tests.pdb
