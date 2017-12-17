@@ -9,5 +9,5 @@ To run (e.g. 1-two-sum.js):
 .javascript-solutions/node 1-two-sum.js
 
 C# solutions:  
-To test:
+To test:  
 ./csharp-solutions/LeetCodeSolutions.Tests/dotnet test
