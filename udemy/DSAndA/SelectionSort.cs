@@ -4,11 +4,14 @@
     {
         public int[] Sort(int[] numbers)
         {
-            int currentPosition = 0;
-
-            if (numbers[currentPosition + 1] < numbers[currentPosition])
+            for (int i = 0; i < numbers.Length - 1; i++)
             {
-                int smallestElementPosition = currentPosition + 1;
+                int currentPosition = i;
+                int smallestElementPosition = currentPosition;
+
+                for (int j = currentPosition; j < numbers.Length - 1; j++)
+                    if (numbers[j + 1] < numbers[j])
+                        smallestElementPosition = j + 1;
 
                 int aux = numbers[currentPosition];
                 numbers[currentPosition] = numbers[smallestElementPosition];
