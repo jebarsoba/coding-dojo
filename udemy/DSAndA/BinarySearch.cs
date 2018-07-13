@@ -1,4 +1,6 @@
-﻿namespace DSAndA
+﻿using System;
+
+namespace DSAndA
 {
     public class BinarySearch
     {
@@ -15,11 +17,18 @@
             int max = (this.orderedNumbers.Length - 1);
             int middle = (max + min) / 2;
 
-            if (this.orderedNumbers[middle] == number)
-                return middle;
-            else
-                //Actually, I should keep looking for...
-                return middle + 1;
+            while (min <= max)
+            {
+                if (this.orderedNumbers[middle] == number)
+                    return middle;
+                else
+                {
+                    min = middle + 1;
+                    middle = (max + min) / 2;
+                }
+            }
+
+            throw new ApplicationException("Number not found.");
         }
     }
 }
