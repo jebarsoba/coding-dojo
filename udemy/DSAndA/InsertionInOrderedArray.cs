@@ -7,16 +7,24 @@
             //Arrays in C# are inmutable, so I have to create a new array but with one slot more than the original one...
             int[] newOrderedArray = this.GetCopyOfArrayWithFreeSlotAtEnd(orderedArray);
 
-            int positionWhereItemShouldBeInserted = this.GetPositionWhereItemShouldBeInserted(itemToInsert, newOrderedArray);
+            //If the item to insert is the greatest, just insert it at the end...
+            int originalArrayLastElementPosition = orderedArray.Length - 1;
+
+            if (itemToInsert >= newOrderedArray[originalArrayLastElementPosition])
+            {
+                newOrderedArray[originalArrayLastElementPosition + 1] = itemToInsert;
+
+                return newOrderedArray;
+            }
+
+            int positionWhereItemShouldBeInserted = this.GetPositionWhereItemShouldBeInserted(itemToInsert, orderedArray);
 
             //Making space to insert the item...
-            int lastElementPosition = orderedArray.Length - 1;
-            int currentPosition = lastElementPosition;
+            int currentPosition = originalArrayLastElementPosition;
 
             do
-            {
                 newOrderedArray[currentPosition + 1] = newOrderedArray[currentPosition--];
-            } while (currentPosition == positionWhereItemShouldBeInserted);
+            while (currentPosition != positionWhereItemShouldBeInserted - 1);
 
             newOrderedArray[positionWhereItemShouldBeInserted] = itemToInsert;
 
@@ -33,11 +41,11 @@
             return sameOrderedArrayButWithOneSlotMore;
         }
 
-        private int GetPositionWhereItemShouldBeInserted(int itemToInsert, int[] newOrderedArray)
+        private int GetPositionWhereItemShouldBeInserted(int itemToInsert, int[] orderedArray)
         {
             int positionWhereItemShouldBeInserted = 0;
 
-            while (itemToInsert >= newOrderedArray[positionWhereItemShouldBeInserted])
+            while (positionWhereItemShouldBeInserted < orderedArray.Length && itemToInsert >= orderedArray[positionWhereItemShouldBeInserted])
                 positionWhereItemShouldBeInserted++;
 
             return positionWhereItemShouldBeInserted;
