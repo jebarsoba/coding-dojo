@@ -4,22 +4,22 @@ namespace DSAndA
 {
     public class BinarySearch
     {
-        private int[] orderedNumbers;
+        private int[] orderedArray;
 
-        public BinarySearch(int[] orderedNumbers)
+        public BinarySearch(int[] orderedArray)
         {
-            this.orderedNumbers = orderedNumbers;
+            this.orderedArray = orderedArray;
         }
 
         public int Find(int number)
         {
             int min = 0;
-            int max = (this.orderedNumbers.Length - 1);
+            int max = (this.orderedArray.Length - 1);
             int middle = (max + min) / 2;
 
             while (min <= max)
             {
-                if (this.orderedNumbers[middle] == number)
+                if (this.orderedArray[middle] == number)
                     return middle;
                 else
                 {

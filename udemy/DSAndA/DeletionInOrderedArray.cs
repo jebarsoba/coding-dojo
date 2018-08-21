@@ -4,9 +4,22 @@
     {
         public int[] Delete(int[] orderedArray, int itemToDelete)
         {
-            //TODO: Binary search the item to delete, compact the array and move it to a new one...
+            //Binary searching the item to delete...
+            int itemToDeletePosition = new BinarySearch(orderedArray: orderedArray).Find(itemToDelete);
 
-            return new int[] { 3, 7, 20, 32, 45, 52, 60, 75 };
+            //Compacting the array...
+            int currentPosition = itemToDeletePosition;
+
+            while (currentPosition < orderedArray.Length - 1)
+                orderedArray[currentPosition] = orderedArray[++currentPosition];
+
+            //Move the elements to the new array (with one position less)...
+            int[] newArray = new int[orderedArray.Length - 1];
+
+            for (int i = 0; i < newArray.Length; i++)
+                newArray[i] = orderedArray[i];
+
+            return newArray;
         }
     }
 }
