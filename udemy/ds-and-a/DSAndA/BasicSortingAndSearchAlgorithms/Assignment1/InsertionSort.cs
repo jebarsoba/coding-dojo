@@ -4,14 +4,17 @@
     {
         public Employee[] Sort(Employee[] employees)
         {
-            int currentIndex = 0;
-            int lastIndex = employees.Length - 1;
-
-            if (employees[currentIndex].Number > employees[lastIndex].Number)
+            for (int currentIndex = 1; currentIndex < employees.Length; currentIndex++)
             {
-                Employee aux = employees[lastIndex];
-                employees[lastIndex] = employees[currentIndex];
-                employees[currentIndex] = aux;
+                Employee currentEmployee = employees[currentIndex];
+
+                int previousIndex = currentIndex - 1;
+
+                while (previousIndex >= 0 && currentEmployee.Number < employees[previousIndex].Number)
+                {
+                    employees[previousIndex + 1] = employees[previousIndex];
+                    employees[previousIndex--] = currentEmployee;
+                }
             }
 
             return employees;
