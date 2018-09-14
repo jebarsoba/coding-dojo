@@ -10,5 +10,11 @@ namespace DSAndA.Test.BasicSortingAndSearchAlgorithms.Assignment3
         {
             Assert.True(new AnagramChecker().IsAnagram("letras", "lastre"));
         }
+
+        [Fact]
+        public void AnagramCheckerTest2()
+        {
+            Assert.False(new AnagramChecker().IsAnagram("letras", "llllll"));
+        }
     }
 }
