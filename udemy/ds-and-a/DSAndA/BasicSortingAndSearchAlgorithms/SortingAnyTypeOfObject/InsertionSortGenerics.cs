@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DSAndA.SortingAnyTypeOfObject
+namespace DSAndA.BasicSortingAndSearchAlgorithms.SortingAnyTypeOfObject
 {
     public class InsertionSortGenerics<T> where T : IComparable<T>
     {

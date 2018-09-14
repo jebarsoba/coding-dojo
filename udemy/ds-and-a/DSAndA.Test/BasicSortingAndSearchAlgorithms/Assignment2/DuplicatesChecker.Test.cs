@@ -1,6 +1,7 @@
-﻿using Xunit;
+﻿using DSAndA.BasicSortingAndSearchAlgorithms.Assignment2;
+using Xunit;
 
-namespace DSAndA.Test
+namespace DSAndA.Test.BasicSortingAndSearchAlgorithms.Assignment2
 {
     public class DuplicatesCheckerTestFixture
     {

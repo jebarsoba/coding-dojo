@@ -1,7 +1,7 @@
-﻿using DSAndA.SortingAnyTypeOfObject;
+﻿using DSAndA.BasicSortingAndSearchAlgorithms.SortingAnyTypeOfObject;
 using Xunit;
 
-namespace DSAndA.Test.SortingAnyTypeOfObject
+namespace DSAndA.Test.BasicSortingAndSearchAlgorithms.SortingAnyTypeOfObject
 {
     public class CircleTestFixture
     {

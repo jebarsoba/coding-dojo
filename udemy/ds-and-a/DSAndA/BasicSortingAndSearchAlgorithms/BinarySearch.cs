@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DSAndA
+namespace DSAndA.BasicSortingAndSearchAlgorithms
 {
     public class BinarySearch
     {

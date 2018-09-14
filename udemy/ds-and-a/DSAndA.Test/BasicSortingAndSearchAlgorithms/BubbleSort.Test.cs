@@ -1,6 +1,7 @@
+using DSAndA.BasicSortingAndSearchAlgorithms;
 using Xunit;
 
-namespace DSAndA.Test
+namespace DSAndA.Test.BasicSortingAndSearchAlgorithms
 {
     public class BubbleSortTestFixture
     {

@@ -1,3 +1,4 @@
+using DSAndA.BasicSortingAndSearchAlgorithms;
 using Xunit;
 
 namespace DSAndA.Test

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DSAndA
+namespace DSAndA.BasicSortingAndSearchAlgorithms.Assignment2
 {
     public class DuplicatesChecker
     {

@@ -1,4 +1,4 @@
-﻿namespace DSAndA
+﻿namespace DSAndA.BasicSortingAndSearchAlgorithms
 {
     public class InsertionInOrderedArray
     {
