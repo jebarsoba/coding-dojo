@@ -2,13 +2,29 @@
 {
     public class LinkedList
     {
-        public Node Head { get; set; }
+        private Node head;
 
         public void InsertAtHead(int data)
         {
-            Node nodeToBeInserted = new Node(data) { NextNode = this.Head };
+            Node nodeToBeInserted = new Node(data) { NextNode = this.head };
 
-            this.Head = nodeToBeInserted;
+            this.head = nodeToBeInserted;
+        }
+
+        public override string ToString()
+        {
+            string nodes = string.Empty;
+
+            Node current = this.head;
+
+            while (current != null)
+            {
+                nodes += $"{current.ToString()},";
+
+                current = current.NextNode;
+            }
+
+            return nodes;
         }
     }
 }

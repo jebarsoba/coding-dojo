@@ -2,12 +2,17 @@
 {
     public class Node
     {
-        public int Data { get; set; }
+        private int data;
         public Node NextNode { get; set; }
 
         public Node(int data)
         {
-            this.Data = data;
+            this.data = data;
+        }
+
+        public override string ToString()
+        {
+            return this.data.ToString();
         }
     }
 }

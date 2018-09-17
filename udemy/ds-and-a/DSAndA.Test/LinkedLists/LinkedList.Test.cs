@@ -11,11 +11,10 @@ namespace DSAndA.Test.LinkedLists
             LinkedList linkedList = new LinkedList();
 
             linkedList.InsertAtHead(1);
-            Assert.Equal(expected: 1, actual: linkedList.Head.Data);
+            Assert.Equal(expected: "1,", actual: linkedList.ToString());
 
             linkedList.InsertAtHead(5);
-            Assert.Equal(expected: 5, actual: linkedList.Head.Data);
-            Assert.Equal(expected: 1, actual: linkedList.Head.NextNode.Data);
+            Assert.Equal(expected: "5,1,", actual: linkedList.ToString());
         }
     }
 }
