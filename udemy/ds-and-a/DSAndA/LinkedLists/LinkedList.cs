@@ -4,11 +4,23 @@
     {
         private Node head;
 
-        public void InsertAtHead(int data)
+        public int Lenght
         {
-            Node nodeToBeInserted = new Node(data) { NextNode = this.head };
+            get
+            {
+                int length = 0;
 
-            this.head = nodeToBeInserted;
+                Node current = this.head;
+
+                while (current != null)
+                {
+                    ++length;
+
+                    current = current.NextNode;
+                }
+
+                return length;
+            }
         }
 
         public override string ToString()
@@ -25,6 +37,13 @@
             }
 
             return nodes;
+        }
+
+        public void InsertAtHead(int data)
+        {
+            Node nodeToBeInserted = new Node(data) { NextNode = this.head };
+
+            this.head = nodeToBeInserted;
         }
     }
 }
