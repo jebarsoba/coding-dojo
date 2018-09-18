@@ -45,5 +45,10 @@
 
             this.head = nodeToBeInserted;
         }
+
+        public void DeleteFromHead()
+        {
+            this.head = this.head.NextNode;
+        }
     }
 }
