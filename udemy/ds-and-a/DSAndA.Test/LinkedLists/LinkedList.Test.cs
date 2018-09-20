@@ -38,5 +38,15 @@ namespace DSAndA.Test.LinkedLists
             linkedList.DeleteFromHead();
             Assert.Equal(expected: "1,", actual: linkedList.ToString());
         }
+
+        [Fact]
+        public void SearchTest1()
+        {
+            LinkedList linkedList = new LinkedList();
+            linkedList.InsertAtHead(1);
+            linkedList.InsertAtHead(5);
+
+            Assert.Equal(expected: "1", actual: linkedList.Search(1).ToString());
+        }
     }
 }

@@ -14,5 +14,10 @@
         {
             return this.data.ToString();
         }
+
+        public int GetData()
+        {
+            return this.data;
+        }
     }
 }

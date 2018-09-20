@@ -50,5 +50,20 @@
         {
             this.head = this.head.NextNode;
         }
+
+        public Node Search(int data)
+        {
+            Node current = this.head;
+
+            while (current != null)
+            {
+                if (current.GetData() == data)
+                    return current;
+
+                current = current.NextNode;
+            }
+
+            return null;
+        }
     }
 }
