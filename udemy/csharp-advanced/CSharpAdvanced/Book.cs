@@ -1,17 +1,13 @@
 ﻿namespace CSharpAdvanced
 {
-    public class Book
+    public class Book : Product
     {
-        private string isbn;
-        private string title;
-
         public Book(string isbn, string title)
         {
-            this.isbn = isbn;
-            this.title = title;
+            this.Isbn = isbn;
+            this.Title = title;
         }
 
-        public string Isbn { get { return this.isbn; } }
-        public string Title { get { return this.title; } }
+        public string Isbn { get; private set; }
     }
 }
