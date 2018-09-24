@@ -1,12 +1,23 @@
 ﻿namespace CSharpAdvanced
 {
-    public class Nullable<T>
+    public class Nullable<T> where T : struct
     {
-        private int value;
+        private object value;
 
-        public Nullable(int value)
+        public Nullable()
+        {
+        }
+
+        public Nullable(T value)
         {
             this.value = value;
+        }
+
+        public bool HasValue { get { return this.value != null; } }
+
+        public T GetValueOrDefault()
+        {
+            return this.HasValue ? (T)this.value : default(T);
         }
     }
 }
