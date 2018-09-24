@@ -1,8 +1,10 @@
-﻿namespace DSAndA.LinkedLists
+﻿using System;
+
+namespace DSAndA.LinkedLists
 {
-    public class LinkedList
+    public class LinkedList<T> where T : IComparable<T>
     {
-        private Node head;
+        private Node<T> head;
 
         public int Lenght
         {
@@ -10,7 +12,7 @@
             {
                 int length = 0;
 
-                Node current = this.head;
+                Node<T> current = this.head;
 
                 while (current != null)
                 {
@@ -27,7 +29,7 @@
         {
             string nodes = string.Empty;
 
-            Node current = this.head;
+            Node<T> current = this.head;
 
             while (current != null)
             {
@@ -39,9 +41,9 @@
             return nodes;
         }
 
-        public void InsertAtHead(int data)
+        public void InsertAtHead(T data)
         {
-            Node nodeToBeInserted = new Node(data) { NextNode = this.head };
+            Node<T> nodeToBeInserted = new Node<T>(data) { NextNode = this.head };
 
             this.head = nodeToBeInserted;
         }
@@ -51,13 +53,13 @@
             this.head = this.head.NextNode;
         }
 
-        public Node Search(int data)
+        public Node<T> Search(T data)
         {
-            Node current = this.head;
+            Node<T> current = this.head;
 
             while (current != null)
             {
-                if (current.GetData() == data)
+                if (current.GetData().CompareTo(data) == 0)
                     return current;
 
                 current = current.NextNode;

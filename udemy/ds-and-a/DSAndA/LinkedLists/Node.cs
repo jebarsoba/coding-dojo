@@ -1,11 +1,11 @@
 ﻿namespace DSAndA.LinkedLists
 {
-    public class Node
+    public class Node<T>
     {
-        private int data;
-        public Node NextNode { get; set; }
+        private T data;
+        public Node<T> NextNode { get; set; }
 
-        public Node(int data)
+        public Node(T data)
         {
             this.data = data;
         }
@@ -15,7 +15,7 @@
             return this.data.ToString();
         }
 
-        public int GetData()
+        public T GetData()
         {
             return this.data;
         }
