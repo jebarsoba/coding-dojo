@@ -36,7 +36,7 @@ namespace DSAndA
 
         public override string ToString()
         {
-            string nodes = "";
+            string nodes = string.Empty;
 
             Node<int> current = this.head;
 
