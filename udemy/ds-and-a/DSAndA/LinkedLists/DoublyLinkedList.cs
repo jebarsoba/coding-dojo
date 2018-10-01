@@ -1,6 +1,8 @@
-﻿namespace DSAndA.LinkedLists
+﻿using System;
+
+namespace DSAndA.LinkedLists
 {
-    public class DoublyLinkedList<T>
+    public class DoublyLinkedList<T> where T : IComparable
     {
         private DoublyLinkedNode<T> head;
 
@@ -30,6 +32,20 @@
             }
 
             return nodes;
+        }
+
+        public void Sort()
+        {
+            DoublyLinkedNode<T> current = this.head.Next;
+
+            if (current != null && current.CompareTo(current.Prev.Data) < 0)
+            {
+                current.Next = current.Prev;
+                current.Prev.Next = null;
+                current.Prev.Prev = current;
+                this.head = current;
+                current.Prev = this.head;
+            }
         }
     }
 }
