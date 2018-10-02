@@ -40,11 +40,12 @@ namespace DSAndA.LinkedLists
 
             if (current != null && current.CompareTo(current.Prev.Data) < 0)
             {
-                current.Next = current.Prev;
-                current.Prev.Next = null;
-                current.Prev.Prev = current;
-                this.head = current;
-                current.Prev = this.head;
+                current.Prev.Next = current.Next; //10 -> null (As 10 is last, next points to null)
+                current.Next = current.Prev; //2 -> 10
+                current.Prev.Prev = current; //2 <- 10
+
+                this.head = current; //head = 2
+                current.Prev = null; // As 2 is head, prev points to null
             }
         }
     }
