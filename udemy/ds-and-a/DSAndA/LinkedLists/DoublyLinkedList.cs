@@ -38,25 +38,36 @@ namespace DSAndA.LinkedLists
         {
             DoublyLinkedNode<T> current = this.head.Next;
 
-            if (current != null && current.CompareTo(current.Prev.Data) < 0)
-                this.Swap(leftNode: current.Prev, rightNode: current);
+            while (current != null)
+            {
+                DoublyLinkedNode<T> left = current.Prev;
+
+                if (current.CompareTo(left.Data) < 0)
+                {
+                    this.Swap(left: left, right: current);
+
+                    current = left.Next;
+                }
+                else
+                    current = current.Next;
+            }
         }
 
-        private void Swap(DoublyLinkedNode<T> leftNode, DoublyLinkedNode<T> rightNode)
+        private void Swap(DoublyLinkedNode<T> left, DoublyLinkedNode<T> right)
         {
-            leftNode.Next = rightNode.Next; // 10 -> null (As 10 is last, next points to null)
+            left.Next = right.Next; // 10 -> null (As 10 is last, next points to null)
 
-            if (leftNode.Next != null)
-                leftNode.Next.Prev = leftNode; // 10 <- Next node to 10
+            if (left.Next != null)
+                left.Next.Prev = left; // 10 <- Next node to 10
 
-            rightNode.Next = rightNode.Prev; // 2 -> 10
-            rightNode.Prev = leftNode.Prev; // null <- 2 (As 2 is head, prev points to null)
-            rightNode.Next.Prev = rightNode; // 2 <- 10
+            right.Next = right.Prev; // 2 -> 10
+            right.Prev = left.Prev; // null <- 2 (As 2 is head, prev points to null)
+            right.Next.Prev = right; // 2 <- 10
 
-            if (rightNode.Prev != null)
-                rightNode.Prev.Next = rightNode; // Previous node to 2 -> 2
+            if (right.Prev != null)
+                right.Prev.Next = right; // Previous node to 2 -> 2
             else
-                this.head = rightNode; // head = 2
+                this.head = right; // head = 2
         }
     }
 }
