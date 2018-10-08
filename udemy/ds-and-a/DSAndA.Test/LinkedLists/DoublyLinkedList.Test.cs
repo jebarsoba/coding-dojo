@@ -49,7 +49,7 @@ namespace DSAndA.Test.LinkedLists
             Assert.Equal(expected: "2,8,10,", actual: doublyLinkedList.ToString());
         }
 
-        /*[Fact]
+        [Fact]
         public void InsertionSortTest3()
         {
             DoublyLinkedList<int> doublyLinkedList = new DoublyLinkedList<int>();
@@ -61,6 +61,22 @@ namespace DSAndA.Test.LinkedLists
             doublyLinkedList.Sort();
 
             Assert.Equal(expected: "2,6,8,10,", actual: doublyLinkedList.ToString());
-        }*/
+        }
+
+        [Fact]
+        public void InsertionSortTest4()
+        {
+            DoublyLinkedList<int> doublyLinkedList = new DoublyLinkedList<int>();
+            doublyLinkedList.InsertAtHead(3);
+            doublyLinkedList.InsertAtHead(7);
+            doublyLinkedList.InsertAtHead(6);
+            doublyLinkedList.InsertAtHead(8);
+            doublyLinkedList.InsertAtHead(2);
+            doublyLinkedList.InsertAtHead(10);
+
+            doublyLinkedList.Sort();
+
+            Assert.Equal(expected: "2,3,6,7,8,10,", actual: doublyLinkedList.ToString());
+        }
     }
 }

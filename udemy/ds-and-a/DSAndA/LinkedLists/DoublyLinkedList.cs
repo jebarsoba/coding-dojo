@@ -41,12 +41,25 @@ namespace DSAndA.LinkedLists
             while (current != null)
             {
                 DoublyLinkedNode<T> left = current.Prev;
+                DoublyLinkedNode<T> right = current;
 
-                if (current.CompareTo(left.Data) < 0)
+                if (right.CompareTo(left.Data) < 0)
                 {
-                    this.Swap(left: left, right: current);
+                    this.Swap(left: left, right: right);
 
                     current = left.Next;
+
+                    right = left.Prev;
+                    left = right?.Prev;
+
+                    //Keep swapping if needed...
+                    while (left != null && right != null && right.CompareTo(left.Data) < 0)
+                    {
+                        this.Swap(left: left, right: right);
+
+                        right = left.Prev;
+                        left = right?.Prev;
+                    }
                 }
                 else
                     current = current.Next;
