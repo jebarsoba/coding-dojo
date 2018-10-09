@@ -67,5 +67,31 @@ namespace DSAndA.LinkedLists
 
             return null;
         }
+
+        public void AppendLastNodesToBeginning(int n)
+        {
+            Node<T> current = this.head;
+            int currentPosition = 1;
+
+            // Example: 1 -> 2 -> 3
+            // Iterate through the list until reaching the (count - n) element = 2
+            while (currentPosition++ != this.Lenght - n)
+                current = current.NextNode;
+
+            // Save a reference to the current element as "toBeLastElement"
+            Node<T> toBeLastElement = current;
+
+            // Go one more element forward
+            current = current.NextNode;
+
+            // Connect toBeLastElement.Next to null: 1 -> 2 -> null
+            toBeLastElement.NextNode = null;
+
+            // Connect current.Next to head: 3 -> 1 -> 2 -> null
+            current.NextNode = this.head;
+
+            // Make current the new head
+            this.head = current;
+        }
     }
 }
