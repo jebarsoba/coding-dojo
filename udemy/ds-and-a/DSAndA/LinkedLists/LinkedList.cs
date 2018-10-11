@@ -100,5 +100,21 @@ namespace DSAndA.LinkedLists
             // Connect toBeLast.Next to null: 1 -> 2 -> null
             toBeLast.NextNode = null;
         }
+
+        public void Reverse()
+        {
+            LinkedList<T> reversedLinkedList = new LinkedList<T>();
+
+            Node<T> current = this.head;
+
+            while (current != null)
+            {
+                reversedLinkedList.InsertAtHead(current.GetData());
+
+                current = current.NextNode;
+            }
+
+            this.head = reversedLinkedList.head;
+        }
     }
 }
