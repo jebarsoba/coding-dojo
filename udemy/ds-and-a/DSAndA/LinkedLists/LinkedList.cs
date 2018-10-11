@@ -78,20 +78,27 @@ namespace DSAndA.LinkedLists
             while (currentPosition++ != this.Lenght - n)
                 current = current.NextNode;
 
-            // Save a reference to the current element as "toBeLastElement"
-            Node<T> toBeLastElement = current;
+            // Save a reference to the current element as toBeLast
+            Node<T> toBeLast = current;
 
             // Go one more element forward
             current = current.NextNode;
 
-            // Connect toBeLastElement.Next to null: 1 -> 2 -> null
-            toBeLastElement.NextNode = null;
+            // Save a reference to the current element as toBeHead
+            Node<T> toBeHead = current;
 
-            // Connect current.Next to head: 3 -> 1 -> 2 -> null
+            // Go to the last element of the list
+            while (current.NextNode != null)
+                current = current.NextNode;
+
+            // Connect last element to head: 3 -> 1 -> 2 -> null
             current.NextNode = this.head;
 
-            // Make current the new head
-            this.head = current;
+            // Make toBeHead the new head
+            this.head = toBeHead;
+
+            // Connect toBeLast.Next to null: 1 -> 2 -> null
+            toBeLast.NextNode = null;
         }
     }
 }
