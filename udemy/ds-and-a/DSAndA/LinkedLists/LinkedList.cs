@@ -6,24 +6,7 @@ namespace DSAndA.LinkedLists
     {
         private Node<T> head;
 
-        public int Lenght
-        {
-            get
-            {
-                int length = 0;
-
-                Node<T> current = this.head;
-
-                while (current != null)
-                {
-                    ++length;
-
-                    current = current.NextNode;
-                }
-
-                return length;
-            }
-        }
+        public int Lenght { get; private set; }
 
         public override string ToString()
         {
@@ -46,11 +29,15 @@ namespace DSAndA.LinkedLists
             Node<T> nodeToBeInserted = new Node<T>(data) { NextNode = this.head };
 
             this.head = nodeToBeInserted;
+
+            ++this.Lenght;
         }
 
         public void DeleteFromHead()
         {
             this.head = this.head.NextNode;
+
+            --this.Lenght;
         }
 
         public Node<T> Search(T data)
@@ -115,6 +102,27 @@ namespace DSAndA.LinkedLists
             }
 
             this.head = reversedLinkedList.head;
+        }
+
+        /// <summary>
+        /// With an input of k=1, the last element is returned; with k=2, the second last element; and on so on.
+        /// 
+        /// Example: 1 -> 2 -> 3 -> 4
+        /// 1 = 4th last element => k = 4 (Lenght + 1 - Position = 4 + 1 - 1 = 4)
+        /// 4 = 1st last element => k = 1 (Lenght + 1 - Position = 4 + 1 - 4 = 1)
+        /// </summary>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public Node<T> FindKth(int k)
+        {
+            Node<T> current = this.head;
+
+            int kth = this.Lenght;
+
+            while (kth-- != k && current != null)
+                current = current.NextNode;
+
+            return current;
         }
     }
 }
