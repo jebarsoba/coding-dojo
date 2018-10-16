@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DSAndA.LinkedLists
 {
@@ -123,6 +124,32 @@ namespace DSAndA.LinkedLists
                 current = current.NextNode;
 
             return current;
+        }
+
+        public void RemoveDuplicates()
+        {
+            Node<T> current = this.head;
+
+            Dictionary<T, bool> presenceDictionary = new Dictionary<T, bool>
+            {
+                [current.GetData()] = true
+            };
+
+            Node<T> previous = current;
+            current = current.NextNode;
+
+            while (current != null)
+            {
+                if (presenceDictionary.ContainsKey(current.GetData()))
+                    previous.NextNode = current.NextNode; // Removing the duplicate...
+                else
+                {
+                    previous = current;
+                    presenceDictionary[current.GetData()] = true;
+                }
+
+                current = current.NextNode;
+            }
         }
     }
 }
