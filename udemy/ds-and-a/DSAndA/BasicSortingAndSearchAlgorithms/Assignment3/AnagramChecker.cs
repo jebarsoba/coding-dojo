@@ -8,7 +8,7 @@ namespace DSAndA.BasicSortingAndSearchAlgorithms.Assignment3
         /// <summary>
         /// One for loop to populate the dictionary (O(n)), and another for loop to check if the letters from the second word exist in the dictionary (O(n)).
         /// So, the time complexity is O(n).
-        /// Another valid approach would be to order both letter arrays and check if the words match (O(n square) if using insertion sort).
+        /// Another valid approach would be to order both letter arrays and check if the words match (O(n squared) if using insertion sort).
         /// </summary>
         /// <param name="wordOne"></param>
         /// <param name="wordTwo"></param>

@@ -126,6 +126,10 @@ namespace DSAndA.LinkedLists
             return current;
         }
 
+        /// <summary>
+        /// One single while loop to traverse the list, using a dictionary to detect the duplicates and remove them.
+        /// So, the time complexity is O(n).
+        /// </summary>
         public void RemoveDuplicates()
         {
             Node<T> current = this.head;
@@ -146,6 +150,33 @@ namespace DSAndA.LinkedLists
                 {
                     previous = current;
                     presenceDictionary[current.GetData()] = true;
+                }
+
+                current = current.NextNode;
+            }
+        }
+
+        /// <summary>
+        /// One main while loop to traverse the list, and another nested while loop to remove the duplicates for the current element (if any).
+        /// So, the time complexity is O(n squared).
+        /// </summary>
+        public void RemoveDuplicates_NoAdditionalMemoryApproach()
+        {
+            Node<T> current = this.head;
+
+            while (current != null)
+            {
+                Node<T> duplicatesLoopPrevious = current;
+                Node<T> duplicatesLoopCurrent = current.NextNode;
+
+                while (duplicatesLoopCurrent != null)
+                {
+                    if (duplicatesLoopCurrent.GetData().CompareTo(current.GetData()) == 0)
+                        duplicatesLoopPrevious.NextNode = duplicatesLoopCurrent.NextNode; // Removing the duplicate...
+                    else
+                        duplicatesLoopPrevious = duplicatesLoopCurrent;
+
+                    duplicatesLoopCurrent = duplicatesLoopCurrent.NextNode;
                 }
 
                 current = current.NextNode;

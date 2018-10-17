@@ -32,5 +32,33 @@ namespace DSAndA.Test.LinkedLists.Assignment4
 
             Assert.Equal(expected: "1,3,4,", actual: linkedList.ToString());
         }
+
+        [Fact]
+        public void RemoveDuplicatesTest3()
+        {
+            LinkedList<int> linkedList = new LinkedList<int>();
+            linkedList.InsertAtHead(1);
+            linkedList.InsertAtHead(1);
+
+            linkedList.RemoveDuplicates_NoAdditionalMemoryApproach();
+
+            Assert.Equal(expected: "1,", actual: linkedList.ToString());
+        }
+
+        [Fact]
+        public void RemoveDuplicatesTest4()
+        {
+            LinkedList<int> linkedList = new LinkedList<int>();
+            linkedList.InsertAtHead(1);
+            linkedList.InsertAtHead(4);
+            linkedList.InsertAtHead(3);
+            linkedList.InsertAtHead(1);
+            linkedList.InsertAtHead(3);
+            linkedList.InsertAtHead(1);
+
+            linkedList.RemoveDuplicates_NoAdditionalMemoryApproach();
+
+            Assert.Equal(expected: "1,3,4,", actual: linkedList.ToString());
+        }
     }
 }
