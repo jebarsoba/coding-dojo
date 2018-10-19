@@ -19,5 +19,10 @@
         {
             return this.data;
         }
+
+        public void OverwriteData(T data)
+        {
+            this.data = data;
+        }
     }
 }

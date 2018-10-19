@@ -41,6 +41,17 @@ namespace DSAndA.LinkedLists
             --this.Lenght;
         }
 
+        /// <summary>
+        /// Algorithm to delete a node from somewhere in the middle of a SINGLY linked list, given that you have access only to this node (and of course the subsequent nodes).
+        /// </summary>
+        /// <param name="node"></param>
+        public void DeleteFromMiddle(Node<T> node)
+        {
+            node.OverwriteData(node.NextNode.GetData());
+
+            node.NextNode = node.NextNode.NextNode;
+        }
+
         public Node<T> Search(T data)
         {
             Node<T> current = this.head;
