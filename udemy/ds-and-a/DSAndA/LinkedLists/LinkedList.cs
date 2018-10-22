@@ -193,5 +193,20 @@ namespace DSAndA.LinkedLists
                 current = current.NextNode;
             }
         }
+
+        public bool IsCircular()
+        {
+            Node<T> current = this.head;
+
+            while (current != null)
+            {
+                if (current.NextNode != null && current.NextNode == this.head)
+                    return true;
+
+                current = current.NextNode;
+            }
+
+            return false;
+        }
     }
 }
