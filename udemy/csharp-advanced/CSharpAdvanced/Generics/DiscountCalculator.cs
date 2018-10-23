@@ -1,4 +1,4 @@
-﻿namespace CSharpAdvanced
+﻿namespace CSharpAdvanced.Generics
 {
     public class DiscountCalculator<TProduct> where TProduct : Product
     {

@@ -1,6 +1,7 @@
-﻿using Xunit;
+﻿using CSharpAdvanced.Generics;
+using Xunit;
 
-namespace CSharpAdvanced.Test
+namespace CSharpAdvanced.Test.Generics
 {
     public class DiscountCalculatorTestFixture
     {

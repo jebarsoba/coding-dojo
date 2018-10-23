@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CSharpAdvanced
+namespace CSharpAdvanced.Generics
 {
     public class GenericDictionary<TKey, TValue>
     {

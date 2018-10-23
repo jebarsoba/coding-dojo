@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpAdvanced
+namespace CSharpAdvanced.Generics
 {
     public class Utilities<T> where T : IComparable, new()
     {
