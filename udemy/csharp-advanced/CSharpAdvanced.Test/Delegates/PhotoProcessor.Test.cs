@@ -1,4 +1,5 @@
 ﻿using CSharpAdvanced.Delegates;
+using System;
 using Xunit;
 
 namespace CSharpAdvanced.Test.Delegates
@@ -10,7 +11,7 @@ namespace CSharpAdvanced.Test.Delegates
         {
             PhotoFilters photoFilters = new PhotoFilters();
 
-            PhotoProcessor.PhotoFilterHandler photoFilterHandler = photoFilters.ApplyBrightness;
+            Func<Photo, string> photoFilterHandler = photoFilters.ApplyBrightness;
             photoFilterHandler += photoFilters.ApplyContrast;
             photoFilterHandler += photoFilters.Resize;
             photoFilterHandler += this.RemoveRedEyeFilter;

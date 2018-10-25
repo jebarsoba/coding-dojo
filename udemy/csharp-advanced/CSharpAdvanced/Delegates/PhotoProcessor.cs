@@ -1,14 +1,14 @@
-﻿namespace CSharpAdvanced.Delegates
+﻿using System;
+
+namespace CSharpAdvanced.Delegates
 {
     public class PhotoProcessor
     {
-        public delegate string PhotoFilterHandler(Photo photo);
-
-        public string Process(Photo photo, PhotoFilterHandler photoFilterHandler)
+        public string Process(Photo photo, Func<Photo, string> photoFilterHandler)
         {
             string result = "";
 
-            foreach (PhotoFilterHandler filter in photoFilterHandler.GetInvocationList())
+            foreach (Func<Photo, string> filter in photoFilterHandler.GetInvocationList())
                 result += $"{filter(photo)},";
 
             return result;
