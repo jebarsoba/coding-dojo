@@ -2,14 +2,14 @@
 {
     public class PhotoProcessor
     {
-        public string Process(Photo photo)
+        public delegate string PhotoFilterHandler(Photo photo);
+
+        public string Process(Photo photo, PhotoFilterHandler photoFilterHandler)
         {
             string result = "";
 
-            PhotoFilters filters = new PhotoFilters();
-            result += $"{filters.ApplyBrightness(photo)},";
-            result += $"{filters.ApplyContrast(photo)},";
-            result += $"{filters.Resize(photo)},";
+            foreach (PhotoFilterHandler filter in photoFilterHandler.GetInvocationList())
+                result += $"{filter(photo)},";
 
             return result;
         }
