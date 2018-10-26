@@ -3,7 +3,7 @@ using Xunit;
 
 namespace DSAndA.Test.LinkedLists.Assignment4
 {
-    public class RemoveDuplicates
+    public class RemoveDuplicatesTestFixture
     {
         [Fact]
         public void RemoveDuplicatesTest1()
