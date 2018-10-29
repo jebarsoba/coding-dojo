@@ -3,7 +3,7 @@ using Xunit;
 
 namespace DSAndA.Test.StacksAndQueues
 {
-    public class StackWithArrayAsUnderlyingDSTestFixture
+    public class StackUsingArrayAsUnderlyingDSTestFixture
     {
         [Fact]
         public void StackUsingArrayAsUnderlyingDSTest1()
