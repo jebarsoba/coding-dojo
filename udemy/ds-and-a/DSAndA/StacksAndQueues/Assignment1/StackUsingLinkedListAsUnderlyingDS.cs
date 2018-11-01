@@ -1,6 +1,6 @@
 ﻿using DSAndA.LinkedLists;
 
-namespace DSAndA.StacksAndQueues
+namespace DSAndA.StacksAndQueues.Assignment1
 {
     public class StackUsingLinkedListAsUnderlyingDS
     {

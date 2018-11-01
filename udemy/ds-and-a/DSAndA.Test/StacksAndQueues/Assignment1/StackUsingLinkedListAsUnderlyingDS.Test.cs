@@ -1,4 +1,4 @@
-﻿using DSAndA.StacksAndQueues;
+﻿using DSAndA.StacksAndQueues.Assignment1;
 using Xunit;
 
 namespace DSAndA.Test.StacksAndQueues.Assignment1
