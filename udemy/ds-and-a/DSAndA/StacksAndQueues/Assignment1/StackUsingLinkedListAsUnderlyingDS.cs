@@ -1,14 +1,15 @@
 ﻿using DSAndA.LinkedLists;
+using System;
 
 namespace DSAndA.StacksAndQueues.Assignment1
 {
-    public class StackUsingLinkedListAsUnderlyingDS
+    public class StackUsingLinkedListAsUnderlyingDS<T> where T : IComparable
     {
-        private DoublyLinkedNode<int> top;
+        private DoublyLinkedNode<T> top;
 
-        public void Push(int element)
+        public void Push(T element)
         {
-            DoublyLinkedNode<int> newNode = new DoublyLinkedNode<int>(element);
+            DoublyLinkedNode<T> newNode = new DoublyLinkedNode<T>(element);
             newNode.Prev = this.top;
 
             if (this.top != null) this.top.Next = newNode;
@@ -16,14 +17,17 @@ namespace DSAndA.StacksAndQueues.Assignment1
             this.top = newNode;
         }
 
-        public int Peek()
+        public T Peek()
         {
             return this.top.Data;
         }
 
-        public int Pop()
+        public T Pop()
         {
-            DoublyLinkedNode<int> poppedNode = this.top;
+            if (this.top == null)
+                return default(T);
+
+            DoublyLinkedNode<T> poppedNode = this.top;
 
             this.top = this.top.Prev;
 

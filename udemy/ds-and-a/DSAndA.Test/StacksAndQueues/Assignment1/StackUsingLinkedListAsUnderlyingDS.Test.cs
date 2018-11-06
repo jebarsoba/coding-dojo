@@ -8,7 +8,7 @@ namespace DSAndA.Test.StacksAndQueues.Assignment1
         [Fact]
         public void StackUsingLinkedListAsUnderlyingDSTest1()
         {
-            StackUsingLinkedListAsUnderlyingDS linkedListStack = new StackUsingLinkedListAsUnderlyingDS();
+            StackUsingLinkedListAsUnderlyingDS<int> linkedListStack = new StackUsingLinkedListAsUnderlyingDS<int>();
             linkedListStack.Push(5);
 
             Assert.Equal(expected: 5, actual: linkedListStack.Peek());
@@ -17,7 +17,7 @@ namespace DSAndA.Test.StacksAndQueues.Assignment1
         [Fact]
         public void StackUsingLinkedListAsUnderlyingDSTest2()
         {
-            StackUsingLinkedListAsUnderlyingDS linkedListStack = new StackUsingLinkedListAsUnderlyingDS();
+            StackUsingLinkedListAsUnderlyingDS<int> linkedListStack = new StackUsingLinkedListAsUnderlyingDS<int>();
             linkedListStack.Push(5);
             linkedListStack.Push(12);
 
@@ -27,7 +27,7 @@ namespace DSAndA.Test.StacksAndQueues.Assignment1
         [Fact]
         public void StackUsingLinkedListAsUnderlyingDSTest3()
         {
-            StackUsingLinkedListAsUnderlyingDS linkedListStack = new StackUsingLinkedListAsUnderlyingDS();
+            StackUsingLinkedListAsUnderlyingDS<int> linkedListStack = new StackUsingLinkedListAsUnderlyingDS<int>();
             linkedListStack.Push(5);
             linkedListStack.Push(12);
             linkedListStack.Push(7);
