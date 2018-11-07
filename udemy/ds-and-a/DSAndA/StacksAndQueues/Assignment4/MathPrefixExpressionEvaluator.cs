@@ -42,7 +42,6 @@ namespace DSAndA.StacksAndQueues
         private double ProcessStacks()
         {
             double result = 0;
-            double partialResult = 0;
 
             string currentOper8or = this.oper8orsStack.Pop();
             string currentOperands = this.operandsStack.Pop();
@@ -52,20 +51,13 @@ namespace DSAndA.StacksAndQueues
                 string[] operands = this.TokenizeExpression(currentOperands);
 
                 if (operands.Length == 1)
-                {
-                    result = this.ApplyOperator(currentOper8or, operands[0], partialResult);
-
-                    partialResult = 0;
-                }
+                    result = this.ApplyOperator(currentOper8or, operands[0], result);
                 else // Supporting only binary operations...
-                    partialResult = this.ApplyOperator(currentOper8or, operands[0], operands[1]);
+                    result = this.ApplyOperator(currentOper8or, operands[0], operands[1]);
 
                 currentOper8or = this.oper8orsStack.Pop();
                 currentOperands = this.operandsStack.Pop();
             }
-
-            if (partialResult != 0)
-                result = partialResult;
 
             return result;
         }
