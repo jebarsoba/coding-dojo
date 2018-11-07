@@ -17,10 +17,10 @@ namespace DSAndA.Test.StacksAndQueues.Assignment4
             Assert.Equal(expected: 9.0, actual: new MathPrefixExpressionEvaluator().Evaluate("+ 3 ( + 3 3 )"));
         }
 
-        /*[Fact]
+        [Fact]
         public void MathPrefixExpressionEvaluatorTest3()
         {
-            Assert.Equal(expected: 12.0, actual: new MathPrefixExpressionEvaluator().Evaluate("+ 3 ( + ( + 3 3 ) 3 )"));
-        }*/
+            Assert.Equal(expected: 9.0, actual: new MathPrefixExpressionEvaluator().Evaluate("+ 3 ( * 2 3 )"));
+        }
     }
 }

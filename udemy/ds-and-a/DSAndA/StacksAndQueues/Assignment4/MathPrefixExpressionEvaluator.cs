@@ -42,6 +42,7 @@ namespace DSAndA.StacksAndQueues
         private double ProcessStacks()
         {
             double result = 0;
+            double partialResult = 0;
 
             string currentOper8or = this.oper8orsStack.Pop();
             string currentOperands = this.operandsStack.Pop();
@@ -51,13 +52,20 @@ namespace DSAndA.StacksAndQueues
                 string[] operands = this.TokenizeExpression(currentOperands);
 
                 if (operands.Length == 1)
-                    result += int.Parse(operands[0]);
-                else // Assuming two operands...
-                    result += this.ApplyOperator(currentOper8or, operands[0], operands[1]);
+                {
+                    result = this.ApplyOperator(currentOper8or, operands[0], partialResult);
+
+                    partialResult = 0;
+                }
+                else // Supporting only binary operations...
+                    partialResult = this.ApplyOperator(currentOper8or, operands[0], operands[1]);
 
                 currentOper8or = this.oper8orsStack.Pop();
                 currentOperands = this.operandsStack.Pop();
             }
+
+            if (partialResult != 0)
+                result = partialResult;
 
             return result;
         }
@@ -79,8 +87,18 @@ namespace DSAndA.StacksAndQueues
 
         private double ApplyOperator(string oper8or, string firstOperand, string secondOperand)
         {
-            if (oper8or == "+")
-                return int.Parse(firstOperand) + int.Parse(secondOperand);
+            return this.ApplyOperator(oper8or, firstOperand, double.Parse(secondOperand));
+        }
+
+        private double ApplyOperator(string oper8or, string firstOperand, double secondOperand)
+        {
+            switch (oper8or)
+            {
+                case "+":
+                    return int.Parse(firstOperand) + secondOperand;
+                case "*":
+                    return int.Parse(firstOperand) * secondOperand;
+            }
 
             throw new NotImplementedException($"{oper8or} operator not yet implemented.");
         }
