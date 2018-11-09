@@ -7,6 +7,8 @@ namespace DSAndA.StacksAndQueues.Assignment1
     {
         private DoublyLinkedNode<T> top;
 
+        public int Length { get; private set; }
+
         public void Push(T element)
         {
             DoublyLinkedNode<T> newNode = new DoublyLinkedNode<T>(element);
@@ -15,6 +17,8 @@ namespace DSAndA.StacksAndQueues.Assignment1
             if (this.top != null) this.top.Next = newNode;
 
             this.top = newNode;
+
+            ++this.Length;
         }
 
         public T Peek()
@@ -30,6 +34,8 @@ namespace DSAndA.StacksAndQueues.Assignment1
             DoublyLinkedNode<T> poppedNode = this.top;
 
             this.top = this.top.Prev;
+
+            --this.Length;
 
             return poppedNode.Data;
         }
