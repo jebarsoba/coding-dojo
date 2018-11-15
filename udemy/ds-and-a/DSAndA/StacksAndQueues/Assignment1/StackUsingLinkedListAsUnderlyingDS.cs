@@ -39,5 +39,21 @@ namespace DSAndA.StacksAndQueues.Assignment1
 
             return poppedNode.Data;
         }
+
+        public override string ToString()
+        {
+            string elements = "";
+
+            T element = this.Pop();
+
+            while (element.CompareTo(default(T)) != 0)
+            {
+                elements += $"{element}, ";
+
+                element = this.Pop();
+            }
+
+            return elements.Trim();
+        }
     }
 }
