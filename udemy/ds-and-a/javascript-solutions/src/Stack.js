@@ -28,6 +28,24 @@ class Stack {
   Peek() {
     return this.size > 0 ? this.stackArray[this.topIndex] : null;
   }
+
+  length() {
+    return this.size;
+  }
+
+  toString() {
+    var result = '';
+
+    var poppedItem = this.Pop();
+
+    while (poppedItem != null) {
+      result += `${poppedItem}, `;
+
+      poppedItem = this.Pop();
+    }
+
+    return result;
+  }
 }
 
 module.exports = Stack;

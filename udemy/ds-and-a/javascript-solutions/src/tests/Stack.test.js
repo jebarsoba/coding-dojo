@@ -16,3 +16,11 @@ test('Peeking the top item in the stack', () => {
 
   expect(stack.Peek()).toBe(2);
 });
+
+test('Printing (and popping) all items in the stack', () => {
+  var stack = new Stack();
+  stack.Push(1);
+  stack.Push(2);
+
+  expect(stack.toString()).toBe("2, 1, ");
+});
