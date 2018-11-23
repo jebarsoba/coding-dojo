@@ -1,13 +1,9 @@
 var req = require('request');
 
 class GitHubZen {
-  constructor(url) {
-    this.url = url;
-  }
-
-  GetRandmonDesignPhilosophy(callback) {
+  GetRandmonDesignPhilosophy(url, callback) {
     req.get({
-      url: this.url,
+      url: url,
       headers: {
         'User-Agent': 'Node'
       },
