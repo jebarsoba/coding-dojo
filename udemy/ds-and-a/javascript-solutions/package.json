@@ -1,5 +1,5 @@
 {
-  "name": "javascript-solutions",
+  "name": "udemy-dsa-javascript-solutions",
   "description": "JavaScript solutions for problems from Udemy course -Introduction to Data Structures & Algorithms in Java-",
   "scripts": {
     "test": "jest"
