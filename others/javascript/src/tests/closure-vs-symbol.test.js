@@ -13,7 +13,7 @@ test('Implementing private attributes using closures.', done => {
 
   expect(a.getType()).toBe('dog');
 
-  //Changing from outside (attempt)...
+  // Changing from outside (attempt)...
   a.type = null;
 
   expect(a.getType()).toBe('dog');
@@ -40,7 +40,7 @@ test('Implementing private attributes using the Symbol ES6 primitive (although t
 
   expect(a.getType()).toBe('dog');
 
-  //Changing from outside (attempt)...
+  // Changing from outside (attempt)...
   a.type = null;
 
   expect(a.getType()).toBe('dog');
