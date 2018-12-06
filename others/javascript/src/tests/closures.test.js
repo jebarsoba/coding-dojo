@@ -24,7 +24,7 @@ test('Counting using a global var and closures.', done => {
   done();
 });
 
-test('Closures output question 1', done => {
+test('Closures output question 1.', done => {
   var salary = "1000$"; // Global execution context...
 
   (function () {
