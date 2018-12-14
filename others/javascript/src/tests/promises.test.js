@@ -56,3 +56,34 @@ test('Promises output question 4.', done => {
     console.log('wrong result is', result)
   });
 });
+
+test('Promises output question 5.', done => {
+  resultAnotherPromise(10).then(function(result) {
+    console.log('result if: ', result);
+  });
+
+  // Promise will be rejected, but am not specifying a handler for that... No output expected.
+
+  done();
+});
+
+function calculate(value) {
+  return new Promise(function(resolve, reject) {
+    if (value < 6)
+      resolve(value + 2);
+    else
+      resolve(value - 2);
+  });
+}
+
+test('Promises output question 6.', done => {
+  calculate(1). // 3
+  then(calculate). // 5 (the return value 3 is directly passed as the argument for the calculate function)
+  then(calculate). // 7
+  then(calculate). // 5
+  then(function(result) {
+    expect(result).toBe(5);
+
+    done();
+  });
+});
