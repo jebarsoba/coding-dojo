@@ -92,3 +92,40 @@ test('Call and apply methods.', done => {
 
   done();
 });
+
+test('Use of the this keyword practice.', done => {
+  function createButton() {
+    return Object.create({
+      _title: "Submit",
+      _callback: null,
+
+      firePress: function () {
+        if (this._callback)
+          this._callback.call(this);
+      },
+
+      setPressCallback: function (fCallback) {
+        this._callback = fCallback;
+      }
+    });
+  }
+
+  var view = Object.create({
+    _title: "Hello World",
+    _button: createButton(),
+    getButton: function () {
+      return this._button;
+    }
+  });
+
+  // view._title is "Hello World", but view._button._title is "Submit".
+  // view._button.firePress calls the callback in the "this" context.
+  // So, it should show view._button._title, which is "Submit"-
+  view.getButton().setPressCallback(function () {
+    expect(this._title).toBe("Submit");
+
+    done();
+  })
+
+  view.getButton().firePress();
+});
