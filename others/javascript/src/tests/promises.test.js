@@ -87,3 +87,47 @@ test('Promises output question 6.', done => {
     done();
   });
 });
+
+test('Promise.all.', done => {
+  jest.useFakeTimers();
+
+  const setup = time => () => new Promise(resolve => setTimeout(function () {
+      console.log(time);
+
+      return resolve();
+    }, time));
+
+  const read1 = setup(200); // Creates the Promise of running console.log...
+  const read2 = setup(50);
+  const read3 = setup(100);
+  const write = setup(30);
+
+  const execution = () => Promise.all([
+    read1(),
+    read2(),
+    read3()
+  ])
+  // The Promise.all does the following:
+  // Returns a single Promise that resolves when the 3 promises have resolved. And, when executed:
+  // Puts each console.log inside a timer webapi.
+  // As soon as the time's up, puts each console.log in the task queue.
+  // And finally, the event loop takes each console.log from the task queue and puts it in the stack to run it.
+  //
+  // The then(write), when executed, will run after the Promise.all, and will finally print '30'.
+  .then(function () {
+    write();
+  })
+  .then(function () {
+    done();
+  });
+
+  execution();
+
+  jest.runAllTimers();
+
+  //jest doesn't log the '30', but in Chrome it works as expected:
+  // 50
+  // 100
+  // 200
+  // 30
+});
