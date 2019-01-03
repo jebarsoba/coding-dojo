@@ -1,4 +1,4 @@
-var GitHubZen = require('../GitHubZen');
+var GitHubZen = require('../../GitHubZen');
 var util = require('util');
 
 test('Retrieving random design philosophy from GitHub API, using callbacks.', done => {
