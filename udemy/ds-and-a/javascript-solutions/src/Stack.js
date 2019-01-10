@@ -1,48 +1,40 @@
 class Stack {
   constructor() {
     this.stackArray = [];
-    this.topIndex = 0;
-    this.size = 0;
+    this.topIndex = -1;
   }
 
   Push(element) {
     this.stackArray.push(element);
 
-    ++this.size;
-
-    if (this.size > 1)
-      ++this.topIndex;
+    ++this.topIndex;
   }
 
   Pop() {
     var poppedItem = this.stackArray.pop();
 
-    if (poppedItem != null) {
+    if (poppedItem != null)
       --this.topIndex;
-      --this.size;
-    }
 
     return poppedItem;
   }
 
   Peek() {
-    return this.size > 0 ? this.stackArray[this.topIndex] : null;
-  }
-
-  length() {
-    return this.size;
+    return this.topIndex >= 0 ? this.stackArray[this.topIndex] : null;
   }
 
   toString() {
     var result = '';
+    let items = [];
 
-    var poppedItem = this.Pop();
+    while (this.Peek() != null) {
+      result += `${this.Peek()}, `;
 
-    while (poppedItem != null) {
-      result += `${poppedItem}, `;
-
-      poppedItem = this.Pop();
+      items.push(this.Pop());
     }
+
+    for (let i = items.length - 1; i >= 0; i--)
+      this.Push(items[i]);
 
     return result;
   }
