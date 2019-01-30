@@ -84,6 +84,32 @@ class TowerOfHanoi {
   toString() {
      return `A ${this.towerA.toString()}; B ${this.towerB.toString()}; C ${this.towerC.toString()}`;
   }
+
+  //move(2, 'A', 'C', 'B');
+  //  context: { discs: 2, from: 'A', to: 'C', mid: 'B', at line 4 }
+  //
+  //move(1, 'A', 'B', 'C');
+  //  context: { discs: 1, from: 'A', to: 'B', mid: 'C', at line 1 }
+  //  context: { discs: 2, from: 'A', to: 'C', mid: 'B', at line 4 }
+  //
+  //exit:
+  //  Output: Moving disc 1 from A to B (move(1, 'A', 'B', 'C'))
+  //  Resumes execution context stack top item: context: { discs: 2, from: 'A', to: 'C', mid: 'B', at line 4 }
+  //  Output: Moving disc 2 from A to C (move(2, 'A', 'C', 'B'))
+  //
+  //move(1, 'B', 'C', 'A');
+  //  context: { discs: 1, from: 'B', to: 'C', mid: 'A', at line 1 }
+  //
+  //exit:
+  //  Output: Moving disc 1 from B to C (move(1, 'B', 'C', 'A'))
+  move(discs, from, to, mid) {
+    if (discs == 1) //line 1
+      return console.log(`Moving disc ${discs} from ${from} to ${to}`);  //line 2
+
+    this.move(discs - 1, from, mid, to); //line 4
+    console.log(`Moving disc ${discs} from ${from} to ${to}`); //line 5
+    this.move(discs - 1, mid, to, from); //line 6
+  }
 }
 
 module.exports = TowerOfHanoi;

@@ -16,3 +16,9 @@ test('Solving tower with 3 discs', () => {
 
   expect(tower.Solve()).toBe('A ; B ; C 1, 2, 3, ');
 });
+
+test('Solving tower with 2 discs, recursively', () => {
+  let towerOfHanoi = new TowerOfHanoi();
+
+  towerOfHanoi.move(2, 'A', 'C', 'B');
+});
