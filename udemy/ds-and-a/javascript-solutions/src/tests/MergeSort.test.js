@@ -1,4 +1,4 @@
-test('Merge sort algorithm, merge step', () => {
+test('Merge sort, merge step', () => {
   let array1 = [2, 9];
   let array2 = [7, 8, 12];
 
@@ -7,7 +7,7 @@ test('Merge sort algorithm, merge step', () => {
   expect(new MergeSort().merge(array1, array2)).toEqual(expected);
 });
 
-test('Merge sort algorithm, merge step, another example', () => {
+test('Merge sort, merge step, another example', () => {
   let array1 = [2];
   let array2 = [7];
 
@@ -16,11 +16,22 @@ test('Merge sort algorithm, merge step, another example', () => {
   expect(new MergeSort().merge(array1, array2)).toEqual(expected);
 });
 
+test('Merge sort, divide and conquer with the simplest example possible', () => {
+  let given = [7, 2];
+  let expected = [2, 7];
+
+  expect(new MergeSort().sort(given)).toEqual(expected);
+});
+
 class MergeSort {
   constructor() {
     this.result = [];
     this.currentIndex1 = 0;
     this.currentIndex2 = 0;
+  }
+
+  sort(array) {
+    return this.merge([array[0]], [array[1]]);
   }
 
   /*
