@@ -31,7 +31,16 @@ class MergeSort {
   }
 
   sort(array) {
-    return this.merge([array[0]], [array[1]]);
+    return this.merge(...this.divide(array));
+  }
+
+  divide(array) {
+    let half = Math.round(array.length / 2);
+
+    return [
+      array.filter((_element, index) => index < half ),
+      array.filter((_element, index) => index >= half && index < array.length)
+    ];
   }
 
   /*
