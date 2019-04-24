@@ -1,46 +1,61 @@
 test('Merge sort, merge step', () => {
-  let array1 = [2, 9];
-  let array2 = [7, 8, 12];
+  let array1 = [2, 5, 8, 23, 7, 9, 12, 16];
 
-  let expected = [2, 7, 8, 9, 12];
+  let expected = [2, 5, 7, 8, 9, 12, 16, 23];
 
-  expect(new MergeSort().merge(array1, array2)).toEqual(expected);
+  expect(new MergeSort().merge(array1, 0, 3, 7)).toEqual(expected);
 });
 
-test('Merge sort, merge step, another example', () => {
-  let array1 = [2];
-  let array2 = [7];
+test('Merge sort, with the simplest example possible', () => {
+  let given = [8, 7];
+  let expected = [7, 8];
 
-  let expected = [2, 7];
-
-  expect(new MergeSort().merge(array1, array2)).toEqual(expected);
+  expect(new MergeSort().sort(given, 0, 1)).toEqual(expected);
 });
 
-test('Merge sort, divide and conquer with the simplest example possible', () => {
-  let given = [7, 2];
-  let expected = [2, 7];
+test('Merge sort, with more than 2 elements array', () => {
+  let given = [7, 8, 2, 9];
+  let expected = [2, 7, 8, 9];
 
-  expect(new MergeSort().sort(given)).toEqual(expected);
+  expect(new MergeSort().sort(given, 0, 3)).toEqual(expected);
 });
 
 class MergeSort {
-  constructor() {
-    this.result = [];
-    this.currentIndex1 = 0;
-    this.currentIndex2 = 0;
-  }
-
-  sort(array) {
-    return this.merge(...this.divide(array));
-  }
-
-  divide(array) {
-    let half = Math.round(array.length / 2);
-
-    return [
-      array.filter((_element, index) => index < half ),
-      array.filter((_element, index) => index >= half && index < array.length)
-    ];
+  /**
+   * Pseudocode:
+   * MergeSort(A, start, end)
+   *   if start < end //line 1
+   *     middle = Floor[(start + end)/2] //line 2
+   *     MergeSort(A, start, middle) // line 3
+   *     MergeSort(A, middle+1, end) // line 4
+   *     Merge(A, start, middle, end) // line 5
+   * 
+   * MergeSort([8, 7], 0, 1)
+   *   context: { A: [8, 7], start: 0, end: 1, middle: 0, at line 3 }
+   * 
+   * MergeSort([8, 7]], 0, 0)
+   *   context: { A: [8, 7], start: 0, end: 0, middle: N/A, at line 1 } -> Breaking condition
+   *   context: { A: [8, 7], start: 0, end: 1, middle: 0, at line 3 }
+   *
+   * exit:
+   *   Resumes execution context stack top item: context: { A: [8, 7], start: 0, end: 1, middle: 0, at line 3 }
+   *     MergeSort([8, 7], 1, 1)
+   *       context: { A: [8, 7], start: 1, end: 1, middle: N/A, at line 1 } -> Breaking condition
+   *       context: { A: [8, 7], start: 0, end: 1, middle: 0, at line 4 }
+   * 
+   * exit:
+   *   Resumes execution context stack top item: context: { A: [8, 7], start: 0, end: 1, middle: 0, at line 4 }
+   *     Merge([8, 7], 0, 0, 1)
+   *       context: { A: [8, 7], start: 0, middle: 0, end: 1, at line 5 } -> result [7, 8]
+   */
+  sort(array, start, end) {
+    if (start < end) {
+      let middle = Math.floor((start + end) / 2);
+      console.log(`Middle: ${middle}`);
+      this.sort(array, start, middle);
+      this.sort(array, middle + 1, end);
+      return this.merge(array, start, middle, end);
+    }
   }
 
   /*
@@ -49,31 +64,33 @@ class MergeSort {
   3) Move forward source array pointer
   4) When one array is done, copy rest of other array to resulting array
   */
-  merge(array1, array2) {
-    if (this.currentIndex1 == array1.length && this.currentIndex2 == array2.length)
-      return this.result;
+ merge(array, start, middle, end) {
+    let result = [];
+    const array1 = array.filter((_element, index) => { return index >= start && index <= middle });
+    const array2 = array.filter((_element, index) => { return index > middle && index <= end });
 
-    if (this.currentIndex1 == array1.length) {
-      this.result.push(array2[this.currentIndex2++]);
+    let currentIndex1 = 0;
+    let currentIndex2 = 0;
+    
+    while (!(currentIndex1 == array1.length && currentIndex2 == array2.length)) {
+      if (currentIndex1 == array1.length) {
+        result.push(array2[currentIndex2++]);
 
-      return this.merge(array1, array2);
+        continue;
+      }
+
+      if (currentIndex2 == array2.length) {
+        result.push(array1[currentIndex1++]);
+
+        continue;
+      }
+
+      if (array1[currentIndex1] <= array2[currentIndex2])
+       result.push(array1[currentIndex1++]);
+      else
+        result.push(array2[currentIndex2++]);
     }
 
-    if (this.currentIndex2 == array2.length) {
-      this.result.push(array1[this.currentIndex1++]);
-
-      return this.merge(array1, array2);
-    }
-
-    if (array1[this.currentIndex1] <= array2[this.currentIndex2]) {
-      this.result.push(array1[this.currentIndex1++]);
-
-      return this.merge(array1, array2);
-    }
-    else {
-      this.result.push(array2[this.currentIndex2++]);
-
-      return this.merge(array1, array2);
-    }
+    return result;
   }
 }
