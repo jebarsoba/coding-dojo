@@ -13,7 +13,14 @@ test('Merge sort, with the simplest example possible', () => {
   expect(new MergeSort().sort(given, 0, 1)).toEqual(expected);
 });
 
-test('Merge sort, with more than 2 elements array', () => {
+test('Merge sort, with 3 elements', () => {
+  let given = [8, 7, 2];
+  let expected = [2, 7, 8];
+
+  expect(new MergeSort().sort(given, 0, 2)).toEqual(expected);
+});
+
+test('Merge sort, with 4 elements', () => {
   let given = [7, 8, 2, 9];
   let expected = [2, 7, 8, 9];
 
@@ -30,6 +37,7 @@ class MergeSort {
    *     MergeSort(A, middle+1, end) // line 4
    *     Merge(A, start, middle, end) // line 5
    * 
+   * Test with 2 elements:
    * MergeSort([8, 7], 0, 1)
    *   context: { A: [8, 7], start: 0, end: 1, middle: 0, at line 3 }
    * 
@@ -47,11 +55,39 @@ class MergeSort {
    *   Resumes execution context stack top item: context: { A: [8, 7], start: 0, end: 1, middle: 0, at line 4 }
    *     Merge([8, 7], 0, 0, 1)
    *       context: { A: [8, 7], start: 0, middle: 0, end: 1, at line 5 } -> result [7, 8]
+   * 
+   * Test with 3 elements:
+   * MergeSort(A: [8, 7, 2], start: 0, end: 2)
+   *   context: { A: [8, 7, 2], start: 0, end: 2, middle: 1, at line 3}
+   * 
+   * MergeSort([8, 7, 2], 0, 1)
+   *   context: { A: [8, 7, 2], start: 0, end: 1, middle: 0, at line 3}
+   *   context: { A: [8, 7, 2], start: 0, end: 2, middle: 1, at line 3}
+   * 
+   * MergeSort([8, 7, 2], 0, 0)
+   *   context: { A: [8, 7, 2], start: 0, end: 0, middle: N/A, at line 1} -> Breaking condition
+   *   context: { A: [8, 7, 2], start: 0, end: 1, middle: 0, at line 3}
+   *   context: { A: [8, 7, 2], start: 0, end: 2, middle: 1, at line 3}
+   * 
+   * exit:
+   *   Resumes execution context stack top item: context: { A: [8, 7, 2], start: 0, end: 1, middle: 0, at line 3}
+   *     MergeSort([8, 7, 2], 1, 1)
+   *       context: { A: [8, 7, 2], start: 1, end: 1, middle: N/A, at line 1} -> Breaking condition
+   *       context: { A: [8, 7, 2], start: 0, end: 2, middle: 1, at line 3}
+   * 
+   * exit:
+   *   Resumes execution context stack top item: context: { A: [8, 7, 2], start: 0, end: 2, middle: 1, at line 3}
+   *     MergeSort([8, 7, 2], 2, 2)
+   *       context: { A: [8, 7, 2], start: 2, end: 2, middle: N/A, at line 1} -> Breaking condition
+   *       context: { A: [8, 7, 2], start: 0, end: 2, middle: 1, at line 4}
+   * 
+   * exit:
+   *   Resumes execution context stack top item: context: context: { A: [8, 7, 2], start: 0, end: 2, middle: 1, at line 4}
+   *     Merge([8, 7, 2], 0, 1, 2) -> [2, 8, 7]
    */
   sort(array, start, end) {
     if (start < end) {
       let middle = Math.floor((start + end) / 2);
-      console.log(`Middle: ${middle}`);
       this.sort(array, start, middle);
       this.sort(array, middle + 1, end);
       return this.merge(array, start, middle, end);
