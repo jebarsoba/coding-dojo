@@ -1,4 +1,5 @@
 using Xunit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,42 +9,100 @@ namespace DSAndA.Test.Recursion
     {
         [Fact]
         public void MergeStepTest() {
+            int[] numbers = new int[] { 2, 5, 8, 23, 7, 9, 12, 16 };
+
+            new MergeSorter().Merge(array: numbers, start: 0, middle: 3, end: 7);
+
             Assert.Equal(
                 expected: new int[] { 2, 5, 7, 8, 9, 12, 16, 23 },
-                actual: new MergeSort().Merge(array: new int[] { 2, 5, 8, 23, 7, 9, 12, 16 }, start: 0, middle: 3, end: 7));
+                actual: numbers);
+        }
+
+        [Fact]
+        public void MergeStepStartingFromTheMiddleTest() {
+            int[] numbers = new int[] { 1, 4, 6, 9 };
+
+            new MergeSorter().Merge(array: numbers, start: 2, middle: 2, end: 3);
+
+            Assert.Equal(
+                expected: new int[] { 1, 4, 6, 9 },
+                actual: numbers);
+        }
+
+        [Fact]
+        public void MergeSortTest() {
+            int[] numbers = new int[] { 8, 7, 2 };
+
+            new MergeSorter().Sort(numbers);
+
+            Assert.Equal(
+                expected: new int[] { 2, 7, 8 },
+                actual: numbers);
+        }
+
+        [Fact]
+        public void MergeSortLargerArrayTest() {
+            int[] numbers = new int[] { 4, 1, 6, 9 };
+
+            new MergeSorter().Sort(numbers);
+
+            Assert.Equal(
+                expected: new int[] { 1, 4, 6, 9 },
+                actual: numbers);
+        }
+
+        [Fact]
+        public void MergeSortEvenLargerArrayTest() {
+            int[] numbers = new int[] { 23, 5, 2, 8, 12, 7, 16, 9 };
+
+            new MergeSorter().Sort(numbers);
+
+            Assert.Equal(
+                expected: new int[] { 2, 5, 7, 8, 9, 12, 16, 23 },
+                actual: numbers);
         }
     }
 
-    public class MergeSort
+    public class MergeSorter
     {
-        public int[] Merge(int[] array, int start, int middle, int end) {
-            int[] result = new int[array.Length];
-            IList<int> array1 = array.Where((number, index) => index >= start && index <= middle).ToList();
-            IList<int> array2 = array.Where((number, index) => index > middle && index <= end).ToList();
+        public void Sort(int[] array) {
+            this.MergeSort(array: array, start: 0, end: array.Length - 1);
+        }
 
-            int currentIndex1 = 0;
-            int currentIndex2 = 0;
-
-            while(!(currentIndex1 == array1.Count() && currentIndex2 == array2.Count())) {
-                if (currentIndex1 == array1.Count()) {
-                    result[currentIndex1 + currentIndex2] = array2[currentIndex2++];
-
-                    continue;
-                }
-
-                if (currentIndex2 == array2.Count()) {
-                    result[currentIndex1 + currentIndex2] = array1[currentIndex1++];
-
-                    continue;
-                }
-
-                if (array1[currentIndex1] <= array2[currentIndex2])
-                    result[currentIndex1 + currentIndex2] = array1[currentIndex1++];
-                else
-                    result[currentIndex1 + currentIndex2] = array2[currentIndex2++];
+        public void MergeSort(int[] array, int start, int end) {
+            if (start < end) {
+                int middle = (int) Math.Floor((decimal)((start + end) / 2));
+                this.MergeSort(array, start, middle);
+                this.MergeSort(array, middle + 1, end);
+                this.Merge(array, start, middle, end);
             }
+        }
 
-            return result;
+        public void Merge(int[] array, int start, int middle, int end) {
+            IList<int> left = array.Where((number, index) => index >= start && index <= middle).ToList();
+            IList<int> right = array.Where((number, index) => index > middle && index <= end).ToList();
+
+            int i = 0;
+            int j = 0;
+
+            while(!(i == left.Count() && j == right.Count())) {
+                if (i == left.Count()) {
+                    array[start + i + j] = right[j++];
+
+                    continue;
+                }
+
+                if (j == right.Count()) {
+                    array[start + i + j] = left[i++];
+
+                    continue;
+                }
+
+                if (left[i] <= right[j])
+                    array[start + i + j] = left[i++];
+                else
+                    array[start + i + j] = right[j++];
+            }
         }
     }
 }
