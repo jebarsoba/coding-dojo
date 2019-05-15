@@ -7,6 +7,7 @@ Here's the directory structure and how to run each project:
   - /javascript-solutions: node 1-two-sum.js
 - __/others__
   - /__javascript-interview-questions__: npm t
+  - /__msgpack-lite-sandbox__: node index.js
 - __/udemy__: exercises from the [Udemy](https://udemy.com) courses I'm taking
   - __C# Advanced Topics: Prepare for Technical Interviews__, /csharp-advanced: ./CSharpAdvanced.Test/dotnet test
   - __Introduction to Data Structures & Algorithms in Java__, /ds-and-a
