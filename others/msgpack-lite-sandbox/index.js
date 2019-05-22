@@ -1,6 +1,6 @@
 //This is a simple POST to an endpoint that expects msgpack in the request body...
 var msgpack = require('msgpack-lite');
-const axios = require('axios')
+const axios = require('axios');
 
 const reqBody = {
     "nlp": {
