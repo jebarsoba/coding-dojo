@@ -5,18 +5,10 @@ namespace DSAndA.Test.Recursion.Assignment1
 {
     public class AddTestFixture
     {
-        int result = 0;
         Func<int, int, int> add = null;
 
         public AddTestFixture() {
-            add = (a, b) => {
-                    if (b == 0)
-                        return a + result;    
-                    
-                    ++result;
-
-                    return add(a, b - 1);
-                };
+            add = (a, b) => b == 0 ? a : add(a + 1, b - 1);
         }                
 
         [Fact]

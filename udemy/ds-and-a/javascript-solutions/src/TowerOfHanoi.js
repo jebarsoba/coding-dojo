@@ -9,6 +9,8 @@ class TowerOfHanoi {
     this.discsLeftInTowerA = 0;
     this.discsToMove = 0;
     this.discsInTowerC = 0;
+
+    this.moves = 0;
   }
 
   Push(disc) {
@@ -19,8 +21,6 @@ class TowerOfHanoi {
   }
 
   Solve() {
-    console.log(`${this.toString()}`);
-
     if (this.discsToMove == 0)
       return this.toString();
 
@@ -104,11 +104,20 @@ class TowerOfHanoi {
   //  Output: Moving disc 1 from B to C (move(1, 'B', 'C', 'A'))
   move(discs, from, to, mid) {
     if (discs == 1) //line 1
-      return console.log(`Moving disc ${discs} from ${from} to ${to}`);  //line 2
+      return this.trackMove(discs, from, to);  //line 2
 
     this.move(discs - 1, from, mid, to); //line 4
-    console.log(`Moving disc ${discs} from ${from} to ${to}`); //line 5
+    this.trackMove(discs, from, to); //line 5
     this.move(discs - 1, mid, to, from); //line 6
+  }
+
+  trackMove(discs, from, to) {
+    ++this.moves;
+    //console.log(`Moving disc ${discs} from ${from} to ${to}`);
+  }
+
+  getMoves() {
+    return this.moves;
   }
 }
 

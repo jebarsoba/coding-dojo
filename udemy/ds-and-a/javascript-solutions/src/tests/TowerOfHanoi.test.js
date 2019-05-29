@@ -1,7 +1,7 @@
 const TowerOfHanoi = require('../TowerOfHanoi');
 
 test('Solving tower with 2 discs', () => {
-  let towerOfHanoi = new TowerOfHanoi();
+  const towerOfHanoi = new TowerOfHanoi();
   towerOfHanoi.Push(2);
   towerOfHanoi.Push(1);
 
@@ -9,7 +9,7 @@ test('Solving tower with 2 discs', () => {
 });
 
 test('Solving tower with 3 discs', () => {
-  let tower = new TowerOfHanoi();
+  const tower = new TowerOfHanoi();
   tower.Push(3);
   tower.Push(2);
   tower.Push(1);
@@ -17,8 +17,11 @@ test('Solving tower with 3 discs', () => {
   expect(tower.Solve()).toBe('A ; B ; C 1, 2, 3, ');
 });
 
-test('Solving tower with 2 discs, recursively', () => {
-  let towerOfHanoi = new TowerOfHanoi();
+test('Solving tower with different number of discs, recursively', () => {
+  const towerOfHanoi = new TowerOfHanoi();
 
-  towerOfHanoi.move(2, 'A', 'C', 'B');
+  for (let discs = 1; discs <= 20; ++discs){
+    towerOfHanoi.move(discs, 'A', 'C', 'B');
+    //console.log(`${discs} discs => ${towerOfHanoi.getMoves()} moves`); //20 discs => 2097130 moves; Time complexity is O(2^n).
+  }
 });
