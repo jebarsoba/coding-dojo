@@ -6,6 +6,7 @@ Here's the directory structure and how to run each project:
   - /csharp-solutions: ./LeetCodeSolutions.Tests/dotnet test
   - /javascript-solutions: node 1-two-sum.js
 - __/others__
+  - /__eloquent-javascript__: my solutions for the [Eloquent JavaScript](https://eloquentjavascript.net/) book exercises
   - /__javascript-interview-questions__: npm t
   - /__msgpack-lite-sandbox__: node index.js
 - __/udemy__: exercises from the [Udemy](https://udemy.com) courses I'm taking
