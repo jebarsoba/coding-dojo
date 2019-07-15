@@ -10,6 +10,7 @@ Here's the directory structure and how to run each project:
   - /__javascript-interview-questions__: npm t
   - /__msgpack-lite-sandbox__: node index.js
   - /__openui5__: tutorials from the [OpenUI5](https://openui5.hana.ondemand.com/#/topic) documentation website
+  - /__qlikview-examples__: [Getting Started with QlikView Series](https://community.qlik.com/docs/DOC-1986#getStart) tutorials
 - __/udemy__: exercises from the [Udemy](https://udemy.com) courses I'm taking
   - __C# Advanced Topics: Prepare for Technical Interviews__, /csharp-advanced: ./CSharpAdvanced.Test/dotnet test
   - __Introduction to Data Structures & Algorithms in Java__, /ds-and-a
