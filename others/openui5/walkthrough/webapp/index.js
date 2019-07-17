@@ -1,9 +1,11 @@
 sap.ui.define([
-    "sap/m/Text"
-], function (Text) {
+    "sap/ui/core/mvc/XMLView"
+], async (XMLView) => {
     "use strict";
 
-    new Text({
-        text: "Hello World"
-	}).placeAt("content");
+    let oView = await XMLView.create({
+		viewName: "sap.ui.demo.walkthrough.view.App"
+    });
+    
+    oView.placeAt("content");
 });
