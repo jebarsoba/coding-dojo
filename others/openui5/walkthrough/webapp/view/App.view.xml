@@ -3,6 +3,7 @@
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc"
    displayBlock="true">
+   <Shell>
       <App>
          <pages>
             <Page title="{i18n>homePageTitle}">
@@ -19,9 +20,10 @@
                            valueLiveUpdate="true"
                            width="60%"/>
                      </content>
-               </Panel>
-            </content>
-         </Page>
-      </pages>
-   </App>
+                  </Panel>
+               </content>
+            </Page>
+         </pages>
+      </App>
+   </Shell>
 </mvc:View>
