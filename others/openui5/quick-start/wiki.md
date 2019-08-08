@@ -1,4 +1,5 @@
-# Steps I followed to setup the app structure
+# OpenUI5 quickstart wiki
+## Steps I followed to setup the app structure
 1. Follow the steps in "Step 1: Ready..."
 1. npm install --global @ui5/cli _`(this is done only once)`_  
 2. npm init --yes  
