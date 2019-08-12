@@ -1,5 +1,5 @@
 # coding-dojo
-My coding practices around topics such as data structures and algorithms, JavaScript and C#.
+My coding practices around topics such as data structures and algorithms, JavaScript and C#. More info about my approach in the [Wiki](https://github.com/jebarsoba/coding-dojo/wiki).
 
 Here's the directory structure and how to run each project:
 - __/leetcode__: my [Leetcode](https://leetcode.com) solutions, in C# and JavaScript
