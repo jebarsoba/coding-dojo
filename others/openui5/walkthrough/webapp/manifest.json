@@ -89,6 +89,10 @@
             "uri": "css/style.css"
           }
         ]
+      },
+      "contentDensities": {
+        "compact": true,
+        "cozy": true
       }
     }
   }
