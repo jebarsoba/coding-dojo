@@ -12,6 +12,37 @@ class LinkedList {
         this.head = newNode;
     }
 
+    // O(n)
+    insertInSorted(data) {
+        if (!this.head) {
+            return this.insertAtHead(data);
+        }
+
+        let newNode = new Node(data);
+
+        if (data <= this.head.data) {
+            newNode.nextNode = this.head;
+            this.head = newNode;
+
+            return;
+        }
+
+        let current = this.head;
+
+        while (current.nextNode != null) {
+            if (data <= current.nextNode.data) {
+                newNode.nextNode = current.nextNode;
+                current.nextNode = newNode;
+
+                return;
+            }
+
+            current = current.nextNode;
+        }
+
+        return;
+    }
+
     // O(1)
     deleteFromHead() {
         this.head = this.head.nextNode;
