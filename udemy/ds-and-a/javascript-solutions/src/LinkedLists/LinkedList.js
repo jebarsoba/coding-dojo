@@ -76,6 +76,37 @@ class LinkedList {
         return null;
     }
 
+    appendLastNodesToBeginning(n) {
+        const length = this.length();
+        let prevNodeOfLastNodes = null;
+        let current = this.head;
+
+        // Sample to use as a visual reference:
+        // 0 (head) -> 1 -> 2 -> 3 -> 4 -> null
+
+        // Position current pointer at "length - n - 1" element...
+        for (let i = 0; i < length - n - 1; i++) {
+            current = current.nextNode;
+        }
+
+        // Save "length - n - 1" position...
+        prevNodeOfLastNodes = current;
+
+        // Position current pointer at last element...
+        while (current.nextNode != null) {
+            current = current.nextNode;
+        }
+
+        // Set last.next to head...
+        current.nextNode = this.head;
+
+        // Set head to "length - n - 1".next...
+        this.head = prevNodeOfLastNodes.nextNode;
+
+        // Set "length - n - 1".next to null...
+        prevNodeOfLastNodes.nextNode = null;
+    }
+
     toString() {
         let result = [];
         let current = this.head;
