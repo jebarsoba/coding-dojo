@@ -107,6 +107,20 @@ class LinkedList {
         prevNodeOfLastNodes.nextNode = null;
     }
 
+    reverse() {
+        let linkedList = new LinkedList();
+
+        let current = this.head;
+
+        while (current != null) {
+            linkedList.insertAtHead(current.data);
+
+            current = current.nextNode;
+        }
+
+        this.head = linkedList.head;
+    }
+
     toString() {
         let result = [];
         let current = this.head;
