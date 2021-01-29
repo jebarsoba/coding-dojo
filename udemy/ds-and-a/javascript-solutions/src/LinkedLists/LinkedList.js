@@ -121,6 +121,28 @@ class LinkedList {
         this.head = linkedList.head;
     }
 
+    findKthFromEnd(k) {
+        let i = 0;
+        let map = new Map();
+
+        let current = this.head;
+
+        while (current != null) {
+            map.set(i, current);
+
+            i++;
+            current = current.nextNode;
+        }
+
+        // In other approach, if I'd already have the length of the list,
+        // I wouldn't need a map,
+        // and the solution would be simpler an even more efficient...
+        const length = i;
+        const kth = length - k;
+
+        return map.get(kth);
+    }
+
     toString() {
         let result = [];
         let current = this.head;
