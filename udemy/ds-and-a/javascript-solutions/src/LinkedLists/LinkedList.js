@@ -143,6 +143,26 @@ class LinkedList {
         return map.get(kth);
     }
 
+    // O(n)
+    removeDuplicates() {
+        let set = new Set();
+
+        let current = this.head;
+
+        while (current != null) {
+            set.add(current.data);
+
+            if (current.nextNode && set.has(current.nextNode.data)) {
+                current.nextNode = current.nextNode.nextNode;
+            }
+
+            current = current.nextNode;
+        }
+
+        // If additional memory wouldn't be allowed,
+        // I'd have to traverse the list from head per each element...
+    }
+
     toString() {
         let result = [];
         let current = this.head;
