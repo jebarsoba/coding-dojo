@@ -10,6 +10,8 @@ class LinkedList {
         let newNode = new Node(data);
         newNode.nextNode = this.head;
         this.head = newNode;
+
+        return newNode;
     }
 
     // O(n)
@@ -179,6 +181,24 @@ class LinkedList {
 
             current = current.nextNode;
         }
+    }
+
+    isCircular() {
+        let isCircular = false;
+
+        let current = this.head;
+
+        while (current != null) {
+            if (current.nextNode == this.head) {
+                isCircular = true;
+
+                break;
+            }
+
+            current = current.nextNode;
+        }
+
+        return isCircular;
     }
 
     toString() {
