@@ -163,6 +163,24 @@ class LinkedList {
         // I'd have to traverse the list from head per each element...
     }
 
+    deleteFromMiddle(data) {
+        if (this.head && this.head.data === data) {
+            this.deleteFromHead();
+
+            return;
+        }
+
+        let current = this.head;
+
+        while (current != null) {
+            if (current.nextNode && current.nextNode.data === data) {
+                current.nextNode = current.nextNode.nextNode;
+            }
+
+            current = current.nextNode;
+        }
+    }
+
     toString() {
         let result = [];
         let current = this.head;
