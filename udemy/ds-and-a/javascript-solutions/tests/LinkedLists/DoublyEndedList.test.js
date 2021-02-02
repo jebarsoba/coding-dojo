@@ -1,4 +1,4 @@
-const DoublyEndedList = require("../../LinkedLists/DoublyEndedList");
+const DoublyEndedList = require("../../src/LinkedLists/DoublyEndedList");
 
 test('Inserting item at tail', () => {
     let doublyEndedList = new DoublyEndedList();

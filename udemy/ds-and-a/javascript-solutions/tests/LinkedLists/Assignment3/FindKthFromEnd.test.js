@@ -1,4 +1,4 @@
-const LinkedList = require("../../../LinkedLists/LinkedList");
+const LinkedList = require("../../../src/LinkedLists/LinkedList");
 
 test('Find kth element (counted from the end) of singly linked list in one pass', () => {
     let linkedList = new LinkedList();

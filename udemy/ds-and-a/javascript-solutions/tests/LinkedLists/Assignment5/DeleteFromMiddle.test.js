@@ -1,4 +1,4 @@
-const LinkedList = require("../../../LinkedLists/LinkedList");
+const LinkedList = require("../../../src/LinkedLists/LinkedList");
 
 test('Delete node from somewhere in the middle of a singly linked list', () => {
     let linkedList = new LinkedList();

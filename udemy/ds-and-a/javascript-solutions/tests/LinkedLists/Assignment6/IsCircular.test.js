@@ -1,4 +1,4 @@
-const LinkedList = require("../../../LinkedLists/LinkedList");
+const LinkedList = require("../../../src/LinkedLists/LinkedList");
 
 test('given a circular list, should return true', () => {
     let linkedList = new LinkedList();

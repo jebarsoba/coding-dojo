@@ -1,4 +1,4 @@
-const MergeSorter = require('../MergeSorter');
+const MergeSorter = require('../src/MergeSorter');
 
 test('Merge sort, merge step', () => {
   let given = [2, 5, 8, 23, 7, 9, 12, 16];

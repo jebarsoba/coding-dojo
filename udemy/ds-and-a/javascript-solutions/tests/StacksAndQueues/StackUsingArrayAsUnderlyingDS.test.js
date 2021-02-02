@@ -1,4 +1,4 @@
-const StackUsingArrayAsUnderlyingDS = require('../../StackAndQueues/StackUsingArrayAsUnderlyingDS');
+const StackUsingArrayAsUnderlyingDS = require('../../src/StackAndQueues/StackUsingArrayAsUnderlyingDS');
 
 test('should push item into stack', () => {
     const maxSize = 3;

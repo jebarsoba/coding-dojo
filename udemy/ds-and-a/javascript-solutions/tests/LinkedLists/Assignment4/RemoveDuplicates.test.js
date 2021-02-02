@@ -1,4 +1,4 @@
-const LinkedList = require("../../../LinkedLists/LinkedList");
+const LinkedList = require("../../../src/LinkedLists/LinkedList");
 
 test('Remove duplicates from unsorted list', () => {
     let linkedList = new LinkedList();

@@ -1,4 +1,4 @@
-const Stack = require('../Stack');
+const Stack = require('../src/Stack');
 
 test('Pushing/popping items from the stack', () => {
   var stack = new Stack();

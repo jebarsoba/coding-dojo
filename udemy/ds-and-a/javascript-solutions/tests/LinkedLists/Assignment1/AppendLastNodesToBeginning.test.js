@@ -1,4 +1,4 @@
-﻿const LinkedList = require("../../../LinkedLists/LinkedList");
+﻿const LinkedList = require("../../../src/LinkedLists/LinkedList");
 
 test('Append last N nodes to beginning', () => {
     let linkedList = new LinkedList();

@@ -1,4 +1,4 @@
-﻿const LinkedList = require("../../../LinkedLists/LinkedList");
+﻿const LinkedList = require("../../../src/LinkedLists/LinkedList");
 
 test('Reverse order of elements in linked list', () => {
     let linkedList = new LinkedList();

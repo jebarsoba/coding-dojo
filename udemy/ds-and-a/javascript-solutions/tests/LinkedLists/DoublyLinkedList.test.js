@@ -1,4 +1,4 @@
-const DoublyLinkedList = require("../../LinkedLists/DoublyLinkedList");
+const DoublyLinkedList = require("../../src/LinkedLists/DoublyLinkedList");
 
 test('Inserting item at head', () => {
     let linkedList = new DoublyLinkedList();

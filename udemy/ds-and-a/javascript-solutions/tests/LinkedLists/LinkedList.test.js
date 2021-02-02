@@ -1,4 +1,4 @@
-const LinkedList = require("../../LinkedLists/LinkedList");
+const LinkedList = require("../../src/LinkedLists/LinkedList");
 
 test('Inserting item at head', () => {
     let linkedList = new LinkedList();
