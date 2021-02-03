@@ -1,8 +1,7 @@
 const StackUsingArrayAsUnderlyingDS = require('../../src/StackAndQueues/StackUsingArrayAsUnderlyingDS');
 
 test('should push item into stack', () => {
-    const maxSize = 3;
-    let stack = new StackUsingArrayAsUnderlyingDS(maxSize);
+    let stack = new StackUsingArrayAsUnderlyingDS();
 
     stack.push(5);
     stack.push(15);
@@ -12,8 +11,7 @@ test('should push item into stack', () => {
 });
 
 test('should pop item from stack', () => {
-    const maxSize = 3;
-    let stack = new StackUsingArrayAsUnderlyingDS(maxSize);
+    let stack = new StackUsingArrayAsUnderlyingDS();
 
     stack.push(5);
     stack.push(15);
@@ -28,8 +26,7 @@ test('should pop item from stack', () => {
 });
 
 test('should peek item in stack', () => {
-    const maxSize = 3;
-    let stack = new StackUsingArrayAsUnderlyingDS(maxSize);
+    let stack = new StackUsingArrayAsUnderlyingDS();
 
     stack.push(5);
     stack.push(15);

@@ -1,11 +1,6 @@
 class StackUsingArrayAsUnderlyingDS {
-    constructor(maxSize) {
+    constructor() {
         this.stack = [];
-
-        for (let i = 0; i < maxSize; i++) {
-            this.stack.push(0);
-        }
-
         this.top = -1;
     }
 
@@ -25,7 +20,7 @@ class StackUsingArrayAsUnderlyingDS {
     }
 
     toString() {
-        return this.stack.slice(0, this.top + 1).join(', ');
+        return this.top >= 0 ? this.stack.slice(0, this.top + 1).join(', ') : '';
     }
 }
 

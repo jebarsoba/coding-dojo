@@ -1,4 +1,4 @@
-const Stack = require('./Stack');
+const Stack = require('./StackAndQueues/StackUsingArrayAsUnderlyingDS');
 
 class TowerOfHanoi {
   constructor() {
@@ -14,7 +14,7 @@ class TowerOfHanoi {
   }
 
   Push(disc) {
-    this.towerA.Push(disc);
+    this.towerA.push(disc);
 
     ++this.discsLeftInTowerA;
     ++this.discsToMove;
@@ -32,7 +32,7 @@ class TowerOfHanoi {
       return this.Solve();
     }
 
-    if (this.discsLeftInTowerA == 1 && this.discsToMove >= 1 && ( this.discsInTowerC == 0 || (this.towerC.Peek() - this.towerA.Peek() == 1) )) {
+    if (this.discsLeftInTowerA == 1 && this.discsToMove >= 1 && (this.discsInTowerC == 0 || (this.towerC.peek() - this.towerA.peek() == 1))) {
       this.Move(this.towerA, this.towerC);
 
       --this.discsLeftInTowerA;
@@ -51,7 +51,7 @@ class TowerOfHanoi {
       return this.Solve();
     }
 
-    if (this.towerC.Peek() - this.towerB.Peek() == 1) {
+    if (this.towerC.peek() - this.towerB.peek() == 1) {
       this.Move(this.towerB, this.towerC);
 
       ++this.discsInTowerC;
@@ -60,7 +60,7 @@ class TowerOfHanoi {
       return this.Solve();
     }
 
-    if (this.towerB.Peek() - this.towerC.Peek() == 1) {
+    if (this.towerB.peek() - this.towerC.peek() == 1) {
       this.Move(this.towerC, this.towerB);
 
       --this.discsInTowerC;
@@ -68,7 +68,7 @@ class TowerOfHanoi {
       return this.Solve();
     }
 
-    if (this.discsLeftInTowerA == 0 && (this.towerC.Peek() - this.towerB.Peek()) > 1) {
+    if (this.discsLeftInTowerA == 0 && (this.towerC.peek() - this.towerB.peek()) > 1) {
       this.Move(this.towerB, this.towerA);
 
       ++this.discsLeftInTowerA;
@@ -78,11 +78,11 @@ class TowerOfHanoi {
   }
 
   Move(towerSource, towerDest) {
-    return towerDest.Push(towerSource.Pop());
+    return towerDest.push(towerSource.pop());
   }
 
   toString() {
-     return `A ${this.towerA.toString()}; B ${this.towerB.toString()}; C ${this.towerC.toString()}`;
+    return `A ${this.towerA.toString()}; B ${this.towerB.toString()}; C ${this.towerC.toString()}`;
   }
 
   //move(2, 'A', 'C', 'B');

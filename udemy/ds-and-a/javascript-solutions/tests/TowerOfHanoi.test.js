@@ -5,7 +5,7 @@ test('Solving tower with 2 discs', () => {
   towerOfHanoi.Push(2);
   towerOfHanoi.Push(1);
 
-  expect(towerOfHanoi.Solve()).toBe('A ; B ; C 1, 2, ');
+  expect(towerOfHanoi.Solve()).toBe('A ; B ; C 2, 1');
 });
 
 test('Solving tower with 3 discs', () => {
@@ -14,7 +14,7 @@ test('Solving tower with 3 discs', () => {
   tower.Push(2);
   tower.Push(1);
 
-  expect(tower.Solve()).toBe('A ; B ; C 1, 2, 3, ');
+  expect(tower.Solve()).toBe('A ; B ; C 3, 2, 1');
 });
 
 test('Solving tower with different number of discs, recursively', () => {
