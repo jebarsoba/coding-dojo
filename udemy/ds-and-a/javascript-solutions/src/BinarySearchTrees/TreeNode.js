@@ -25,6 +25,28 @@ class TreeNode {
         this._rigthChild = node;
     }
 
+    insert(data) {
+        if (data < this.data) {
+            if (!this.leftChild) {
+                this.leftChild = new TreeNode(data);
+
+                return;
+            } else {
+                return this.leftChild.insert(data);
+            }
+        }
+
+        if (data >= this.data) {
+            if (!this.rigthChild) {
+                this.rigthChild = new TreeNode(data);
+
+                return;
+            } else {
+                return this.rigthChild.insert(data);
+            }
+        }
+    }
+
     find(data) {
         if (this.data === data) {
             return this;
