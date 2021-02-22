@@ -41,15 +41,15 @@ class BinaryTree {
         }
 
         if (!parent) {
-            this.root = null;
+            this.root = this.root.leftChild ? this.root.leftChild : this.root.rigthChild ? this.root.rigthChild : null;
 
             return;
         }
 
         if (isLeftChild) {
-            parent.leftChild = null;
+            parent.leftChild = parent.leftChild.leftChild ? parent.leftChild.leftChild : null;
         } else {
-            parent.rigthChild = null;
+            parent.rigthChild = parent.rigthChild.rigthChild ? parent.rigthChild.rigthChild : null;
         }
 
         return;

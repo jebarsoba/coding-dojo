@@ -63,3 +63,95 @@ test('given a leaf, should delete the node', () => {
     foundTreeNode = bst.find(65);
     expect(foundTreeNode).toBeFalsy();
 });
+
+test('given a node with one child (left), should delete it accordingly', () => {
+    const bst = new BinaryTree();
+    bst.insert(52);
+    bst.insert(33);
+    bst.insert(65);
+    bst.insert(25);
+    bst.insert(39);
+    bst.insert(23);
+
+    // Assert if child exists...
+    let foundTreeNode = bst.find(23);
+    expect(foundTreeNode.data).toBe(23);
+
+    // Delete parent...
+    bst.delete(25);
+
+    // Assert if parent was deleted... 
+    foundTreeNode = bst.find(25);
+    expect(foundTreeNode).toBeFalsy();
+
+    // Assert if child still exists (now is 33's child)...
+    foundTreeNode = bst.find(23);
+    expect(foundTreeNode.data).toBe(23);
+});
+
+test('given a node with one child (right), should delete it accordingly', () => {
+    const bst = new BinaryTree();
+    bst.insert(52);
+    bst.insert(33);
+    bst.insert(65);
+    bst.insert(25);
+    bst.insert(39);
+    bst.insert(70);
+
+    // Assert if child exists...
+    let foundTreeNode = bst.find(70);
+    expect(foundTreeNode.data).toBe(70);
+
+    // Delete parent...
+    bst.delete(65);
+
+    // Assert if parent was deleted... 
+    foundTreeNode = bst.find(65);
+    expect(foundTreeNode).toBeFalsy();
+
+    // Assert if child still exists (now is 52's child)...
+    foundTreeNode = bst.find(70);
+    expect(foundTreeNode.data).toBe(70);
+});
+
+test('given the root with one child (left), should delete it accordingly', () => {
+    const bst = new BinaryTree();
+    bst.insert(52);
+    bst.insert(25);
+
+    // Assert if child exists...
+    let foundTreeNode = bst.find(25);
+    expect(foundTreeNode.data).toBe(25);
+
+    // Delete parent...
+    bst.delete(52);
+
+    // Assert if parent was deleted... 
+    foundTreeNode = bst.find(52);
+    expect(foundTreeNode).toBeFalsy();
+
+    // Assert if child still exists (now it is the new root)...
+    foundTreeNode = bst.find(25);
+    expect(foundTreeNode.data).toBe(25);
+});
+
+test('given the root with one child (right), should delete it accordingly', () => {
+    const bst = new BinaryTree();
+    bst.insert(52);
+    bst.insert(65);
+
+    // Assert if child exists...
+    let foundTreeNode = bst.find(65);
+    expect(foundTreeNode.data).toBe(65);
+
+    // Delete parent...
+    bst.delete(52);
+
+    // Assert if parent was deleted... 
+    foundTreeNode = bst.find(52);
+    expect(foundTreeNode).toBeFalsy();
+
+    // Assert if child still exists (now it is the new root)...
+    foundTreeNode = bst.find(65);
+    expect(foundTreeNode.data).toBe(65);
+});
