@@ -46,3 +46,20 @@ test('given an already existing number, should insert it as a right child', () =
     foundTreeNode = bst.find(65);
     expect(foundTreeNode.data).toBe(65);
 });
+
+test('given a leaf, should delete the node', () => {
+    const bst = new BinaryTree();
+    bst.insert(52);
+    bst.insert(33);
+    bst.insert(65);
+    bst.insert(25);
+    bst.insert(39);
+
+    let foundTreeNode = bst.find(65);
+    expect(foundTreeNode.data).toBe(65);
+
+    bst.delete(65);
+
+    foundTreeNode = bst.find(65);
+    expect(foundTreeNode).toBeFalsy();
+});
