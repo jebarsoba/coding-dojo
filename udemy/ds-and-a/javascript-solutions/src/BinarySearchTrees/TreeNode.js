@@ -3,6 +3,7 @@ class TreeNode {
         this._data = data;
         this.leftChild = null;
         this.rigthChild = null;
+        this.isDeleted = false;
     }
 
     get data() {
@@ -48,7 +49,7 @@ class TreeNode {
     }
 
     find(data) {
-        if (this.data === data) {
+        if (this.data === data && !this.isDeleted) {
             return this;
         }
 
@@ -61,6 +62,14 @@ class TreeNode {
         }
 
         return null;
+    }
+
+    delete() {
+        this.isDeleted = true;
+    }
+
+    isDeleted() {
+        return this.isDeleted;
     }
 }
 
