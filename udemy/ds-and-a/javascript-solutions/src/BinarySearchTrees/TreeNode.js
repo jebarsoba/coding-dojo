@@ -71,6 +71,14 @@ class TreeNode {
     isDeleted() {
         return this.isDeleted;
     }
+
+    min() {
+        return this.leftChild ? this.leftChild.min() : this;
+    }
+
+    max() {
+        return this.rigthChild ? this.rigthChild.max() : this;
+    }
 }
 
 module.exports = TreeNode;

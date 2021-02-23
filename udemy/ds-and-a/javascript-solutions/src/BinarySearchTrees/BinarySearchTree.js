@@ -12,11 +12,7 @@ class BinaryTree {
     }
 
     find(data) {
-        if (!this.root) {
-            return null;
-        }
-
-        return this.root.find(data);
+        return this.root ? this.root.find(data) : null;
     }
 
     delete(data) {
@@ -27,6 +23,14 @@ class BinaryTree {
         }
 
         return;
+    }
+
+    min() {
+        return this.root ? this.root.min() : null;
+    }
+
+    max() {
+        return this.root ? this.root.max() : null;
     }
 }
 

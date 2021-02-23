@@ -155,3 +155,25 @@ test('given the root with one child (right), should delete it accordingly', () =
     foundTreeNode = bst.find(65);
     expect(foundTreeNode.data).toBe(65);
 });
+
+test('should find the smallest value', () => {
+    const bst = new BinaryTree();
+    bst.insert(52);
+    bst.insert(33);
+    bst.insert(65);
+    bst.insert(25);
+
+    let min = bst.min();
+    expect(min.data).toBe(25);
+});
+
+test('should find the largest value', () => {
+    const bst = new BinaryTree();
+    bst.insert(52);
+    bst.insert(33);
+    bst.insert(65);
+    bst.insert(25);
+
+    let max = bst.max();
+    expect(max.data).toBe(65);
+});
