@@ -79,6 +79,18 @@ class TreeNode {
     max() {
         return this.rigthChild ? this.rigthChild.max() : this;
     }
+
+    traverse(values) {
+        if (this.leftChild) {
+            this.leftChild.traverse(values);
+        }
+
+        values.push(this.data);
+
+        if (this.rigthChild) {
+            this.rigthChild.traverse(values);
+        }
+    }
 }
 
 module.exports = TreeNode;

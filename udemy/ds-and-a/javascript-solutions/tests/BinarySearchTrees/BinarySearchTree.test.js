@@ -177,3 +177,33 @@ test('should find the largest value', () => {
     let max = bst.max();
     expect(max.data).toBe(65);
 });
+
+test('should traverse in-order the tree and print its values', () => {
+    const bst = new BinaryTree();
+    bst.insert(52);
+    bst.insert(33);
+    bst.insert(65);
+
+    const values = bst.traverse();
+    expect(values.join(', ')).toBe('33, 52, 65');
+});
+
+test('should traverse in-order the tree and print its values (a more complex example)', () => {
+    const bst = new BinaryTree();
+    bst.insert(52);
+    bst.insert(33);
+    bst.insert(65);
+    bst.insert(25);
+    bst.insert(39);
+    bst.insert(60);
+    bst.insert(78);
+    bst.insert(12);
+    bst.insert(27);
+    bst.insert(34);
+    bst.insert(48);
+    bst.insert(72);
+    bst.insert(90);
+
+    const values = bst.traverse();
+    expect(values.join(', ')).toBe('12, 25, 27, 33, 34, 39, 48, 52, 60, 65, 72, 78, 90');
+});

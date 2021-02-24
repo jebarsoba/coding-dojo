@@ -32,6 +32,13 @@ class BinaryTree {
     max() {
         return this.root ? this.root.max() : null;
     }
+
+    traverse() {
+        let values = [];
+        this.root.traverse(values);
+
+        return values;
+    }
 }
 
 module.exports = BinaryTree;
