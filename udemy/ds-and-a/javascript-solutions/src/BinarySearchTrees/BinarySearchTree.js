@@ -39,6 +39,10 @@ class BinaryTree {
 
         return values;
     }
+
+    countLeaves() {
+        return this.root.countLeaves();
+    }
 }
 
 module.exports = BinaryTree;

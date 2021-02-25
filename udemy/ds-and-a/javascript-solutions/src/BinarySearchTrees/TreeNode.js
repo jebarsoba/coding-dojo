@@ -91,6 +91,28 @@ class TreeNode {
             this.rigthChild.traverse(values);
         }
     }
+
+    countLeaves() {
+        if (this.isLeaf()) {
+            return 1;
+        }
+
+        let leaves = 0;
+
+        if (this.leftChild) {
+            leaves += this.leftChild.countLeaves();
+        }
+
+        if (this.rigthChild) {
+            leaves += this.rigthChild.countLeaves();
+        }
+
+        return leaves;
+    }
+
+    isLeaf() {
+        return !this.leftChild && !this.rigthChild;
+    }
 }
 
 module.exports = TreeNode;
