@@ -43,6 +43,10 @@ class BinaryTree {
     countLeaves() {
         return this.root.countLeaves();
     }
+
+    height() {
+        return this.root.height();
+    }
 }
 
 module.exports = BinaryTree;

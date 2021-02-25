@@ -113,6 +113,17 @@ class TreeNode {
     isLeaf() {
         return !this.leftChild && !this.rigthChild;
     }
+
+    height() {
+        if (this.isLeaf()) {
+            return 1;
+        }
+
+        const left = this.leftChild ? this.leftChild.height() : 0;
+        const right = this.rigthChild ? this.rigthChild.height() : 0;
+
+        return 1 + (left >= right ? left : right);
+    }
 }
 
 module.exports = TreeNode;
