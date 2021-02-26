@@ -47,6 +47,23 @@ class BinaryTree {
     height() {
         return this.root.height();
     }
+
+    build(values) {
+        const mid = Math.trunc(values.length / 2);
+
+        const root = values[mid];
+        this.insert(root);
+
+        if (mid === 0) {
+            return;
+        }
+
+        const leftChildren = values.slice(0, mid);
+        this.build(leftChildren);
+
+        const rigthChildren = values.slice(mid + 1, values.length);
+        this.build(rigthChildren);
+    }
 }
 
 module.exports = BinaryTree;
