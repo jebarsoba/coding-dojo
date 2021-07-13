@@ -6,18 +6,17 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function (nums1, m, nums2, n) {
-    let j = 0;
-    for (let i = 0; i < nums1.length; i++) {
-        if (i >= m + j && j < n && nums1[i] === 0) {
-            nums1[i] = nums2[j];
-            j++;
-        }
-        else if (nums1[i] > nums2[j]) {
-            nums1 = nums1.copyWithin(i + 1, i);
-            nums1[i] = nums2[j];
-            j++;
-        }
+  let j = 0;
+  for (let i = 0; i < nums1.length; i++) {
+    if (i >= m + j && j < n && nums1[i] === 0) {
+      nums1[i] = nums2[j];
+      j++;
+    } else if (nums1[i] > nums2[j]) {
+      nums1 = nums1.copyWithin(i + 1, i);
+      nums1[i] = nums2[j];
+      j++;
     }
+  }
 };
 
 module.exports = merge;
