@@ -1,4 +1,7 @@
-const { ListNode, hasCycle } = require("../src/141-linked-list-cycle");
+const {
+  ListNode,
+  hasCycle,
+} = require("../src/141-linked-list-cycle_hash-table");
 
 test("Given the head of a linked list, should determine if the linked list has a cycle in it (Example 1)", () => {
   let node0 = {};
