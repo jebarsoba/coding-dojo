@@ -16,3 +16,4 @@ Here's the directory structure and how to run each project:
   - __Introduction to Data Structures & Algorithms in Java__, /ds-and-a
     - /csharp-solutions: ./DSAndA.Test/dotnet test
     - /javascript-solutions: npm t
+    - /typescript-solutions: npm t

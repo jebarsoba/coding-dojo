@@ -1,0 +1,15 @@
+{
+  "name": "leetcode-typescript-solutions",
+  "description": "My Leetcode solutions, in TypeScript",
+  "scripts": {
+    "test": "jest",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "jest": "^27.3.1",
+    "prettier": "^2.5.0",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.5.2"
+  }
+}
