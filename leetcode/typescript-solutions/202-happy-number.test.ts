@@ -18,7 +18,7 @@ function isHappy(n: number): boolean {
     while (nByTen > 0) {
       let integralPart = Math.trunc(nByTen);
       let fractionalPart = nByTen - integralPart;
-      let lastDigit = Math.round(fractionalPart * 10);
+      let lastDigit = Math.round(fractionalPart * 10); // The last digit of a number could be also obtained by doing n % 10...
       sum += Math.pow(lastDigit, 2);
 
       nByTen = integralPart / 10;
