@@ -1,16 +1,16 @@
-test("Given two strings s and t, should determine if they are isomorphic (Example 1)", () => {
+test("given two strings s and t, should determine if they are isomorphic (Example 1)", () => {
   expect(isIsomorphic("egg", "add")).toBe(true);
 });
 
-test("Given two strings s and t, should determine if they are isomorphic (Example 2)", () => {
+test("given two strings s and t, should determine if they are isomorphic (Example 2)", () => {
   expect(isIsomorphic("foo", "bar")).toBe(false);
 });
 
-test("Given two strings s and t, should determine if they are isomorphic (Example 3)", () => {
+test("given two strings s and t, should determine if they are isomorphic (Example 3)", () => {
   expect(isIsomorphic("paper", "title")).toBe(true);
 });
 
-test("Given two strings s and t, should determine if they are isomorphic (Example 3)", () => {
+test("given two strings s and t, should determine if they are isomorphic (Example 3)", () => {
   expect(isIsomorphic("badc", "baba")).toBe(false);
 });
 
