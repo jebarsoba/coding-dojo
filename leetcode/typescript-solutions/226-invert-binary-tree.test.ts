@@ -7,7 +7,6 @@ test("given the root of a binary tree, should invert the tree and return its roo
   let n5 = new TreeNode(3);
   let n6 = new TreeNode(6);
   let n7 = new TreeNode(9);
-
   n1.left = n2;
   n1.right = n3;
   n2.left = n4;
@@ -23,7 +22,6 @@ test("given the root of a binary tree, should invert the tree and return its roo
   let nn5 = new TreeNode(6);
   let nn6 = new TreeNode(3);
   let nn7 = new TreeNode(1);
-
   nn1.left = nn2;
   nn1.right = nn3;
   nn2.left = nn4;
