@@ -1,6 +1,6 @@
-test("given the encoded word '.--.....--' (possibly 'WHAT'), and 'WHAT' being part of the context, should return 'WHAT' as a perfect match", () => {
-  const encodedWord = ".--.....--";
-  const morseCode = {
+test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' being part of the context, should return 'WHAT' as a perfect match", () => {
+  const morse = ".--.....--";
+  const dictionary = {
     ".--": "W",
     "....": "H",
     ".-": "A",
@@ -8,12 +8,12 @@ test("given the encoded word '.--.....--' (possibly 'WHAT'), and 'WHAT' being pa
   };
   const context = ["WHAT"];
 
-  expect(decode(encodedWord, morseCode, context)).toBe("WHAT");
+  expect(decode(morse, dictionary, context)).toBe("WHAT");
 });
 
-test("given the encoded word '.--.....--' (possibly 'WHAT'), without 'WHAT' being part of the context, should inform that no matching was found", () => {
-  const encodedWord = ".--.....--";
-  const morseCode = {
+test("given the morse code '.--.....--' (possibly 'WHAT'), without 'WHAT' being part of the context, should return that no matching was found", () => {
+  const morse = ".--.....--";
+  const dictionary = {
     ".--": "W",
     "....": "H",
     ".-": "A",
@@ -21,14 +21,14 @@ test("given the encoded word '.--.....--' (possibly 'WHAT'), without 'WHAT' bein
   };
   const context = [];
 
-  expect(decode(encodedWord, morseCode, context)).toBe(
+  expect(decode(morse, dictionary, context)).toBe(
     "No matching word found"
   );
 });
 
-test("given the encoded word '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the first valid word as a close match result", () => {
-  const encodedWord = ".--.....--";
-  const morseCode = {
+test("given the morse code '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the first valid word as a close match result", () => {
+  const morse = ".--.....--";
+  const dictionary = {
     ".--": "W",
     "....": "H",
     ".-": "A",
@@ -36,24 +36,24 @@ test("given the encoded word '.--.....--' (possibly 'WHAT'), and 'HAT' in the co
   };
   const context = ["HAT"];
 
-  expect(decode(encodedWord, morseCode, context)).toBe("ATHAT?");
+  expect(decode(morse, dictionary, context)).toBe("ATHAT?");
 });
 
 function processData(input) {
-  const { encodedWords, morseCode, context } = parseInput(input);
+  const { encodedWords, dictionary, context } = parseInput(input);
 
-  for (const encodedWord of encodedWords) {
-    const decodedWord = decode(encodedWord, morseCode, context);
+  for (const morse of encodedWords) {
+    const decodedWord = decode(morse, dictionary, context);
     console.log(decodedWord);
   }
 }
 
 /**
- * Parse input, to create these structures: morseCode, context and encodedWords
+ * Parse input, to create these structures: dictionary, context and encodedWords
  */
 function parseInput(input) {
-  // TODO: Actually parse the input, using regular expressions; For now, I'll return my own...
-  const morseCode = {
+  // TODO: Parse the input for real, using regular expressions; For now, I'll used pre-defined values...
+  const dictionary = {
     ".--": "W",
     "....": "H",
     ".-": "A",
@@ -61,19 +61,19 @@ function parseInput(input) {
   };
   const context = ["WHAT"];
   const encodedWords = [".--.....--"];
-  return { encodedWords, morseCode, context };
+  return { encodedWords, dictionary, context };
 }
 
 /**
- * Decodes the encoded word into all words possible,
+ * Decodes the morse code into all words possible,
  * and returns the best possible result depending on the context
  */
-function decode(encodedWord, morseCode, context) {
+function decode(morse, dictionary, context) {
   let foundWords = [];
-  let validWord = findValidWord(encodedWord, morseCode, foundWords);
+  let validWord = findValidWord(morse, dictionary, foundWords);
   while (validWord !== "") {
     foundWords.push(validWord);
-    validWord = findValidWord(encodedWord, morseCode, foundWords);
+    validWord = findValidWord(morse, dictionary, foundWords);
   }
 
   const perfectMatch = findPerfectMatch(foundWords, context);
@@ -86,21 +86,21 @@ function decode(encodedWord, morseCode, context) {
     return closeMatch;
   }
 
-  // TODO: Cover the rest of the missing scenarios...
+  // TODO: Cover the other scenarios...
 
   return "No matching word found";
 }
 
 /**
- * Decodes the encodedWord into a valid word, different than the given ones (alreadyFoundWords)
+ * Decodes the morse code into a valid word, different than the given ones (alreadyFoundWords)
  */
-function findValidWord(encodedWord, morseCode, alreadyFoundWords) {
+function findValidWord(morse, dictionary, alreadyFoundWords) {
   let decodedWord = "";
   let morseSequence = "";
-  let encodedChars = encodedWord.split("");
+  let encodedChars = morse.split("");
   for (let i = 0; i < encodedChars.length; i++) {
     morseSequence += encodedChars[i];
-    const decodedChar = morseCode[morseSequence];
+    const decodedChar = dictionary[morseSequence];
 
     if (
       decodedChar &&
@@ -127,40 +127,33 @@ function isAlreadyFound(decodedWord, decodedChar, alreadyFoundWords) {
 }
 
 function findPerfectMatch(foundWords, context) {
-  let perfectMatch = undefined;
   for (let possibleOutcome of foundWords) {
     if (context.includes(possibleOutcome)) {
-      perfectMatch = possibleOutcome;
+      return possibleOutcome;
     }
   }
-
-  return perfectMatch;
+  return undefined;
 }
 
 function findCloseMatch(foundWords, context) {
-  let closeMatch = undefined;
   for (let possibleOutcome of foundWords) {
-    if (closeMatch) {
-      break;
-    }
     for (let contextWord of context) {
-      const text =
-        possibleOutcome.length > contextWord.length
-          ? possibleOutcome
-          : contextWord;
-      const partial =
-        possibleOutcome.length > contextWord.length
-          ? contextWord
-          : possibleOutcome;
-      if (match(text, partial)) {
-        closeMatch = possibleOutcome + "?";
-        break;
+      if (partialMatch(possibleOutcome, contextWord)) {
+        return possibleOutcome + "?";
       }
     }
   }
-  return closeMatch;
+  return undefined;
 }
 
-function match(text, partial) {
+function partialMatch(possibleOutcome, contextWord) {
+  const text =
+    possibleOutcome.length > contextWord.length
+      ? possibleOutcome
+      : contextWord;
+  const partial =
+    possibleOutcome.length > contextWord.length
+      ? contextWord
+      : possibleOutcome;
   return text.toLowerCase().indexOf(partial.toLowerCase()) > -1;
 }
