@@ -2,9 +2,11 @@
 My coding practice around topics such as data structures and algorithms, JavaScript and C#. More info about my approach in the [Wiki](https://github.com/jebarsoba/coding-dojo/wiki).
 
 Here's the directory structure and how to run each project:
-- __/leetcode__: my [Leetcode](https://leetcode.com) solutions, in C# and JavaScript
+- __/hackerrank__: my [HackerRank](https://www.hackerrank.com) solutions
+- __/leetcode__: my [Leetcode](https://leetcode.com) solutions, in C#, JavaScript and TypeScript
   - /csharp-solutions: ./LeetCodeSolutions.Tests/dotnet test
   - /javascript-solutions: npm t
+  - /typescript-solutions: npm t
 - __/others__
   - /__eloquent-javascript__: my solutions for the [Eloquent JavaScript](https://eloquentjavascript.net/) book exercises (run with node <file.js>)
   - /__javascript-interview-questions__: npm t
