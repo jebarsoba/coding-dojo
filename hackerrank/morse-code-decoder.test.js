@@ -19,6 +19,14 @@ describe("input parsing", () => {
       W: ".--",
     });
   });
+
+  test("parse full input into the different structures", () => {
+    expect(parseInput(fullInput)).toEqual({
+      encodedWords: [".--.....--"],
+      dictionary: buildTextToMorseDictionary(inputMorseCodeDictionary),
+      context: ["WHAT"],
+    });
+  });
 });
 
 describe("morse code encoding", () => {
@@ -94,17 +102,21 @@ function processData(input) {
   }
 }
 
+const regExMorseCodeRawDictionary = /([A-Z0-9])(\s*)([.-]{1,6})/;
+const regExContext = /^[A-Z0-9]+$/;
+const regExMorseCode = /^[.-]+$/;
+
 /**
  * Parse input, to create these structures: dictionary, context and encodedWords
  */
 function parseInput(input) {
-  // TODO: Take raw dictionary from input...
-  const dictionary = buildTextToMorseDictionary(inputMorseCodeDictionary);
-
-  // TODO: Parse the context and encodedWords from the real input...
-  const context = ["WHAT"];
-  const encodedWords = [".--.....--"];
-  return { encodedWords, dictionary, context };
+  return {
+    encodedWords: input.filter((line) => regExMorseCode.exec(line)),
+    dictionary: buildTextToMorseDictionary(
+      input.filter((line) => regExMorseCodeRawDictionary.exec(line))
+    ),
+    context: input.slice(1).filter((line) => regExContext.exec(line)),
+  };
 }
 
 function buildTextToMorseDictionary(input) {
@@ -116,8 +128,7 @@ function buildTextToMorseDictionary(input) {
 }
 
 function parseMorseCodeChar(line) {
-  let regEx = /([A-Z0-9])(\s*)([.-]{1,6})/;
-  let groups = regEx.exec(line);
+  let groups = regExMorseCodeRawDictionary.exec(line);
   return {
     character: groups[1],
     morse: groups[3],
@@ -239,6 +250,15 @@ const inputMorseCodeDictionary = [
   "8   ---..",
   "9   ----.",
   "0   -----",
+];
+
+const fullInput = [
+  "55",
+  ...inputMorseCodeDictionary,
+  "*",
+  "WHAT",
+  "*",
+  ".--.....--",
 ];
 /**
  *
