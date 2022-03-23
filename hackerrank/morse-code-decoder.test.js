@@ -27,7 +27,7 @@ describe('perfect match', () => {
 });
 
 describe('close match', () => {
-  test("given the morse code '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the first valid word as a close match result plus a question mark", () => {
+  test("given the morse code '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the first valid word as a close match result plus a question mark and a mismatch indicator", () => {
     const morse = ".--.....--";
     const dictionary = {
       ".--": "W",
@@ -37,7 +37,9 @@ describe('close match', () => {
     };
     const context = ["HAT"];
 
-    expect(decode(morse, dictionary, context)).toBe("ATHAT?");
+    // I don't remember exactly the rules for the computation of the mismatch indicator...
+    // I assume I have to show how many characters are different (2 in this case, comparing 'HAT' and 'ATHAT').
+    expect(decode(morse, dictionary, context)).toBe("ATHAT? 2");
   });
 });
 
@@ -162,12 +164,15 @@ function findCloseMatch(validWords, context) {
   for (let candidateWord of validWords) {
     for (let contextWord of context) {
       if (partialMatch(candidateWord, contextWord)) {
-        // TODO: Add mismatch indicator...
-        return candidateWord + "?";
+        return `${candidateWord}? ${calculateMismatchIndicator(candidateWord, contextWord)}`;
       }
     }
   }
   return undefined;
+}
+
+function calculateMismatchIndicator(candidateWord, contextWord) {
+  return Math.abs(candidateWord.length - contextWord.length).toString();
 }
 
 function partialMatch(candidateWord, contextWord) {
