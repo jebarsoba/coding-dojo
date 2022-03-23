@@ -102,20 +102,31 @@ function processData(input) {
   }
 }
 
-const regExMorseCodeRawDictionary = /([A-Z0-9])(\s*)([.-]{1,6})/;
-const regExContext = /^[A-Z0-9]+$/;
-const regExMorseCode = /^[.-]+$/;
+const regExMorseCodeRawDictionary = /\s*([A-Z0-9])(\s*)([.-]{1,6})\s*/;
+const regExContext = /^\s*([A-Z0-9]+)\s*$/;
+const regExMorseCode = /^\s*([.-]+)\s*$/;
 
 /**
  * Parse input, to create these structures: dictionary, context and encodedWords
  */
 function parseInput(input) {
   return {
-    encodedWords: input.filter((line) => regExMorseCode.exec(line)),
+    encodedWords: input
+      .map((line) => {
+        const groups = regExMorseCode.exec(line);
+        return groups ? groups[1] : null;
+      })
+      .filter((line) => line),
     dictionary: buildTextToMorseDictionary(
       input.filter((line) => regExMorseCodeRawDictionary.exec(line))
     ),
-    context: input.slice(1).filter((line) => regExContext.exec(line)),
+    context: input
+      .slice(1)
+      .map((line) => {
+        const groups = regExContext.exec(line);
+        return groups ? groups[1] : null;
+      })
+      .filter((line) => line),
   };
 }
 
@@ -214,8 +225,8 @@ function buildClosestMatch(partialMatches) {
  *
  */
 const inputMorseCodeDictionary = [
-  "A   .-",
-  "B   -...",
+  "A   .-   ",
+  "   B   -...",
   "C   -.-.",
   "D   -..",
   "E   .",
@@ -256,9 +267,9 @@ const fullInput = [
   "55",
   ...inputMorseCodeDictionary,
   "*",
-  "WHAT",
+  "WHAT   ",
   "*",
-  ".--.....--",
+  ".--.....--   ",
 ];
 /**
  *
