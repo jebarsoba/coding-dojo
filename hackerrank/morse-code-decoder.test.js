@@ -1,4 +1,4 @@
-describe('perfect match', () => {
+describe("perfect match", () => {
   test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' being part of the context, should return 'WHAT' as a perfect match", () => {
     const morse = ".--.....--";
     const dictionary = {
@@ -12,7 +12,7 @@ describe('perfect match', () => {
     expect(decode(morse, dictionary, context)).toBe("WHAT");
   });
 
-  test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' and 'ATHAT' in the context, should return the shortest perfect match plus an exclamation mark", () => {
+  test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' and 'ATHAT' in the context, should return the shortest perfect match, plus an exclamation mark", () => {
     const morse = ".--.....--";
     const dictionary = {
       ".--": "W",
@@ -26,8 +26,8 @@ describe('perfect match', () => {
   });
 });
 
-describe('close match', () => {
-  test("given the morse code '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the first valid word as a close match result plus a question mark and a mismatch indicator", () => {
+describe("close match", () => {
+  test("given the morse code '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the best/closest valid word, plus a question mark and a mismatch indicator", () => {
     const morse = ".--.....--";
     const dictionary = {
       ".--": "W",
@@ -38,12 +38,12 @@ describe('close match', () => {
     const context = ["HAT"];
 
     // I don't remember exactly the rules for the computation of the mismatch indicator...
-    // I assume I have to show how many characters are different (2 in this case, comparing 'HAT' and 'ATHAT').
-    expect(decode(morse, dictionary, context)).toBe("ATHAT? 2");
+    // I assume I have to show how many characters are different (1 in this case, comparing 'HAT' and 'WHAT').
+    expect(decode(morse, dictionary, context)).toBe("WHAT? 1");
   });
 });
 
-describe('no match', () => {
+describe("no match", () => {
   test("given the morse code '.--.....--' (possibly 'WHAT'), without 'WHAT' being part of the context, should return that no matching was found", () => {
     const morse = ".--.....--";
     const dictionary = {
@@ -54,9 +54,7 @@ describe('no match', () => {
     };
     const context = [];
 
-    expect(decode(morse, dictionary, context)).toBe(
-      "No matching word found"
-    );
+    expect(decode(morse, dictionary, context)).toBe("No matching word found");
   });
 });
 
@@ -157,18 +155,33 @@ function findPerfectMatch(validWords, context) {
     return undefined;
   }
 
-  return perfectMatches.sort((a, b) => a.length - b.length)[0] + (perfectMatches.length > 1 ? '!' : '');
+  return (
+    perfectMatches.sort((a, b) => a.length - b.length)[0] +
+    (perfectMatches.length > 1 ? "!" : "")
+  );
 }
 
 function findCloseMatch(validWords, context) {
+  let candidateWords = [];
   for (let candidateWord of validWords) {
     for (let contextWord of context) {
       if (partialMatch(candidateWord, contextWord)) {
-        return `${candidateWord}? ${calculateMismatchIndicator(candidateWord, contextWord)}`;
+        candidateWords.push({
+          word: candidateWord,
+          mismatch: calculateMismatchIndicator(candidateWord, contextWord),
+        });
       }
     }
   }
-  return undefined;
+
+  if (candidateWords.length === 0) {
+    return undefined;
+  }
+
+  const closestMatch = candidateWords.sort(
+    (a, b) => a.mismatch - b.mismatch
+  )[0];
+  return `${closestMatch.word}? ${closestMatch.mismatch}`;
 }
 
 function calculateMismatchIndicator(candidateWord, contextWord) {
@@ -177,12 +190,8 @@ function calculateMismatchIndicator(candidateWord, contextWord) {
 
 function partialMatch(candidateWord, contextWord) {
   const text =
-    candidateWord.length > contextWord.length
-      ? candidateWord
-      : contextWord;
+    candidateWord.length > contextWord.length ? candidateWord : contextWord;
   const partial =
-    candidateWord.length > contextWord.length
-      ? contextWord
-      : candidateWord;
+    candidateWord.length > contextWord.length ? contextWord : candidateWord;
   return text.toLowerCase().indexOf(partial.toLowerCase()) > -1;
 }
