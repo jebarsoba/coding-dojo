@@ -1,42 +1,61 @@
-test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' being part of the context, should return 'WHAT' as a perfect match", () => {
-  const morse = ".--.....--";
-  const dictionary = {
-    ".--": "W",
-    "....": "H",
-    ".-": "A",
-    "-": "T",
-  };
-  const context = ["WHAT"];
+describe('perfect match', () => {
+  test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' being part of the context, should return 'WHAT' as a perfect match", () => {
+    const morse = ".--.....--";
+    const dictionary = {
+      ".--": "W",
+      "....": "H",
+      ".-": "A",
+      "-": "T",
+    };
+    const context = ["WHAT"];
 
-  expect(decode(morse, dictionary, context)).toBe("WHAT");
+    expect(decode(morse, dictionary, context)).toBe("WHAT");
+  });
+
+  test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' and 'ATHAT' in the context, should return the shortest perfect match plus an exclamation mark", () => {
+    const morse = ".--.....--";
+    const dictionary = {
+      ".--": "W",
+      "....": "H",
+      ".-": "A",
+      "-": "T",
+    };
+    const context = ["WHAT", "ATHAT"];
+
+    expect(decode(morse, dictionary, context)).toBe("WHAT!");
+  });
 });
 
-test("given the morse code '.--.....--' (possibly 'WHAT'), without 'WHAT' being part of the context, should return that no matching was found", () => {
-  const morse = ".--.....--";
-  const dictionary = {
-    ".--": "W",
-    "....": "H",
-    ".-": "A",
-    "-": "T",
-  };
-  const context = [];
+describe('close match', () => {
+  test("given the morse code '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the first valid word as a close match result plus a question mark", () => {
+    const morse = ".--.....--";
+    const dictionary = {
+      ".--": "W",
+      "....": "H",
+      ".-": "A",
+      "-": "T",
+    };
+    const context = ["HAT"];
 
-  expect(decode(morse, dictionary, context)).toBe(
-    "No matching word found"
-  );
+    expect(decode(morse, dictionary, context)).toBe("ATHAT?");
+  });
 });
 
-test("given the morse code '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the first valid word as a close match result", () => {
-  const morse = ".--.....--";
-  const dictionary = {
-    ".--": "W",
-    "....": "H",
-    ".-": "A",
-    "-": "T",
-  };
-  const context = ["HAT"];
+describe('no match', () => {
+  test("given the morse code '.--.....--' (possibly 'WHAT'), without 'WHAT' being part of the context, should return that no matching was found", () => {
+    const morse = ".--.....--";
+    const dictionary = {
+      ".--": "W",
+      "....": "H",
+      ".-": "A",
+      "-": "T",
+    };
+    const context = [];
 
-  expect(decode(morse, dictionary, context)).toBe("ATHAT?");
+    expect(decode(morse, dictionary, context)).toBe(
+      "No matching word found"
+    );
+  });
 });
 
 function processData(input) {
@@ -80,8 +99,6 @@ function decode(morse, dictionary, context) {
   if (closeMatch) {
     return closeMatch;
   }
-
-  // TODO: Cover the other scenarios...
 
   return "No matching word found";
 }
@@ -127,18 +144,25 @@ function isAlreadyFound(decodedWord, decodedChar, alreadyFoundWords) {
 }
 
 function findPerfectMatch(validWords, context) {
+  let perfectMatches = [];
   for (let candidateWord of validWords) {
     if (context.includes(candidateWord)) {
-      return candidateWord;
+      perfectMatches.push(candidateWord);
     }
   }
-  return undefined;
+
+  if (perfectMatches.length === 0) {
+    return undefined;
+  }
+
+  return perfectMatches.sort((a, b) => a.length - b.length)[0] + (perfectMatches.length > 1 ? '!' : '');
 }
 
 function findCloseMatch(validWords, context) {
   for (let candidateWord of validWords) {
     for (let contextWord of context) {
       if (partialMatch(candidateWord, contextWord)) {
+        // TODO: Add mismatch indicator...
         return candidateWord + "?";
       }
     }
