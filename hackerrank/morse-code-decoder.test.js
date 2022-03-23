@@ -1,60 +1,58 @@
-describe("perfect match", () => {
-  test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' being part of the context, should return 'WHAT' as a perfect match", () => {
-    const morse = ".--.....--";
-    const dictionary = {
-      ".--": "W",
-      "....": "H",
-      ".-": "A",
-      "-": "T",
-    };
-    const context = ["WHAT"];
-
-    expect(decode(morse, dictionary, context)).toBe("WHAT");
+describe("input parsing", () => {
+  test("parse morse code dictionary", () => {
+    const morseCodeChar = parseMorseCodeChar("A   .-");
+    expect(morseCodeChar.character).toBe("A");
+    expect(morseCodeChar.morse).toBe(".-");
   });
 
-  test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' and 'ATHAT' in the context, should return the shortest perfect match, plus an exclamation mark", () => {
-    const morse = ".--.....--";
-    const dictionary = {
-      ".--": "W",
-      "....": "H",
+  test("build morse code dictionary", () => {
+    const input = ["A   .-", "W   .--"];
+    expect(buildMorseCodeDictionary(input)).toEqual({
       ".-": "A",
-      "-": "T",
-    };
-    const context = ["WHAT", "ATHAT"];
-
-    expect(decode(morse, dictionary, context)).toBe("WHAT!");
+      ".--": "W",
+    });
   });
 });
 
-describe("close match", () => {
-  test("given the morse code '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the best/closest valid word, plus a question mark and a mismatch indicator", () => {
-    const morse = ".--.....--";
-    const dictionary = {
-      ".--": "W",
-      "....": "H",
-      ".-": "A",
-      "-": "T",
-    };
-    const context = ["HAT"];
+describe("morse code decoding", () => {
+  describe("perfect match", () => {
+    test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' being part of the context, should return 'WHAT' as a perfect match", () => {
+      const morse = ".--.....--";
+      const dictionary = buildMorseCodeDictionary(inputMorseCodeDictionary);
+      const context = ["WHAT"];
 
-    // I don't remember exactly the rules for the computation of the mismatch indicator...
-    // I assume I have to show how many characters are different (1 in this case, comparing 'HAT' and 'WHAT').
-    expect(decode(morse, dictionary, context)).toBe("WHAT? 1");
+      expect(decode(morse, dictionary, context)).toBe("WHAT");
+    });
+
+    test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' and 'ATHAT' in the context, should return the shortest perfect match, plus an exclamation mark", () => {
+      const morse = ".--.....--";
+      const dictionary = buildMorseCodeDictionary(inputMorseCodeDictionary);
+      const context = ["WHAT", "ATHAT"];
+
+      expect(decode(morse, dictionary, context)).toBe("WHAT!");
+    });
   });
-});
 
-describe("no match", () => {
-  test("given the morse code '.--.....--' (possibly 'WHAT'), without 'WHAT' being part of the context, should return that no matching was found", () => {
-    const morse = ".--.....--";
-    const dictionary = {
-      ".--": "W",
-      "....": "H",
-      ".-": "A",
-      "-": "T",
-    };
-    const context = [];
+  describe("close match", () => {
+    test("given the morse code '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the best/closest valid word, plus a question mark and a mismatch indicator", () => {
+      const morse = ".--.....--";
+      const dictionary = buildMorseCodeDictionary(inputMorseCodeDictionary);
+      const context = ["HAT"];
 
-    expect(decode(morse, dictionary, context)).toBe("No matching word found");
+      // I don't remember exactly the rules for the computation of the mismatch indicator...
+      // I assume I have to show how many characters are different (1 in this case, comparing 'HAT' and 'WHAT').
+      expect(decode(morse, dictionary, context)).toBe("WHAT? 1");
+    });
+  });
+
+  describe("no match", () => {
+    test("given the morse code '.--.....--' (possibly 'WHAT'), without 'WHAT' being part of the context, should return that no matching was found", () => {
+      const morse = ".--.....--";
+      const dictionary = buildMorseCodeDictionary(inputMorseCodeDictionary);
+      const context = [];
+
+      expect(decode(morse, dictionary, context)).toBe("No matching word found");
+    });
   });
 });
 
@@ -71,16 +69,30 @@ function processData(input) {
  * Parse input, to create these structures: dictionary, context and encodedWords
  */
 function parseInput(input) {
-  // TODO: Parse the input for real, using regular expressions; For now, I'll used pre-defined values...
-  const dictionary = {
-    ".--": "W",
-    "....": "H",
-    ".-": "A",
-    "-": "T",
-  };
+  // TODO: Take raw dictionary from input...
+  const dictionary = buildMorseCodeDictionary(inputMorseCodeDictionary);
+
+  // TODO: Parse the context and encodedWords from the real input...
   const context = ["WHAT"];
   const encodedWords = [".--.....--"];
   return { encodedWords, dictionary, context };
+}
+
+function parseMorseCodeChar(line) {
+  let regEx = /([A-Z0-9])(\s*)([.-]{1,6})/;
+  let groups = regEx.exec(line);
+  return {
+    character: groups[1],
+    morse: groups[3],
+  };
+}
+
+function buildMorseCodeDictionary(input) {
+  let morseCodeChars = input.map(parseMorseCodeChar);
+  return morseCodeChars.reduce((dictionary, morseCodeChar) => {
+    dictionary[morseCodeChar.morse] = morseCodeChar.character;
+    return dictionary;
+  }, {});
 }
 
 /**
@@ -195,3 +207,42 @@ function partialMatch(candidateWord, contextWord) {
     candidateWord.length > contextWord.length ? contextWord : candidateWord;
   return text.toLowerCase().indexOf(partial.toLowerCase()) > -1;
 }
+
+const inputMorseCodeDictionary = [
+  "A   .-",
+  "B   -...",
+  "C   -.-.",
+  "D   -..",
+  // "E   .",
+  "F   ..-.",
+  "G   --.",
+  "H   ....",
+  // "I   ..",
+  "J   .---",
+  "K   -.-",
+  "L   .-..",
+  "M   --",
+  "N   -.",
+  "O   ---",
+  "P   .--.",
+  "Q   --.-",
+  "R   .-.",
+  // "S   ...",
+  "T   -",
+  "U   ..-",
+  "V   ...-",
+  "W   .--",
+  "X   -..-",
+  "Y   -.--",
+  "Z   --..",
+  "1   .----",
+  "2   ..---",
+  "3   ...--",
+  "4   ....-",
+  "5   .....",
+  "6   -....",
+  "7   --...",
+  "8   ---..",
+  "9   ----.",
+  "0   -----",
+];
