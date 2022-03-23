@@ -66,22 +66,17 @@ function parseInput(input) {
 
 /**
  * Decodes the morse code into all words possible,
- * and returns the best possible result depending on the context
+ * and returns the word that best fits the given context (if possible)
  */
 function decode(morse, dictionary, context) {
-  let foundWords = [];
-  let validWord = findValidWord(morse, dictionary, foundWords);
-  while (validWord !== "") {
-    foundWords.push(validWord);
-    validWord = findValidWord(morse, dictionary, foundWords);
-  }
+  let validWords = findValidWords(morse, dictionary, []);
 
-  const perfectMatch = findPerfectMatch(foundWords, context);
+  const perfectMatch = findPerfectMatch(validWords, context);
   if (perfectMatch) {
     return perfectMatch;
   }
 
-  const closeMatch = findCloseMatch(foundWords, context);
+  const closeMatch = findCloseMatch(validWords, context);
   if (closeMatch) {
     return closeMatch;
   }
@@ -92,9 +87,9 @@ function decode(morse, dictionary, context) {
 }
 
 /**
- * Decodes the morse code into a valid word, different than the given ones (alreadyFoundWords)
+ * Returns an array of valid words that can be decoded from the given morse code
  */
-function findValidWord(morse, dictionary, alreadyFoundWords) {
+function findValidWords(morse, dictionary, alreadyFoundWords) {
   let decodedWord = "";
   let morseSequence = "";
   let encodedChars = morse.split("");
@@ -110,7 +105,12 @@ function findValidWord(morse, dictionary, alreadyFoundWords) {
       morseSequence = "";
     }
   }
-  return decodedWord;
+
+  if (decodedWord === "") {
+    return alreadyFoundWords;
+  }
+
+  return findValidWords(morse, dictionary, [...alreadyFoundWords, decodedWord]);
 }
 
 /**
@@ -126,34 +126,34 @@ function isAlreadyFound(decodedWord, decodedChar, alreadyFoundWords) {
   return false;
 }
 
-function findPerfectMatch(foundWords, context) {
-  for (let possibleOutcome of foundWords) {
-    if (context.includes(possibleOutcome)) {
-      return possibleOutcome;
+function findPerfectMatch(validWords, context) {
+  for (let candidateWord of validWords) {
+    if (context.includes(candidateWord)) {
+      return candidateWord;
     }
   }
   return undefined;
 }
 
-function findCloseMatch(foundWords, context) {
-  for (let possibleOutcome of foundWords) {
+function findCloseMatch(validWords, context) {
+  for (let candidateWord of validWords) {
     for (let contextWord of context) {
-      if (partialMatch(possibleOutcome, contextWord)) {
-        return possibleOutcome + "?";
+      if (partialMatch(candidateWord, contextWord)) {
+        return candidateWord + "?";
       }
     }
   }
   return undefined;
 }
 
-function partialMatch(possibleOutcome, contextWord) {
+function partialMatch(candidateWord, contextWord) {
   const text =
-    possibleOutcome.length > contextWord.length
-      ? possibleOutcome
+    candidateWord.length > contextWord.length
+      ? candidateWord
       : contextWord;
   const partial =
-    possibleOutcome.length > contextWord.length
+    candidateWord.length > contextWord.length
       ? contextWord
-      : possibleOutcome;
+      : candidateWord;
   return text.toLowerCase().indexOf(partial.toLowerCase()) > -1;
 }
