@@ -19,8 +19,6 @@
  *   exchange array[i] with array[end]
  *   return i
  */
-//
-//
 
 describe("quick sort", () => {
   it("example 1", () => {
