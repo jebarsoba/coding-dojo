@@ -19,13 +19,13 @@ const {
 afterEach(() => (outputData = ""));
 
 describe("input parsing", () => {
-  test("parse morse code dictionary", () => {
+  it("parse morse code dictionary", () => {
     const morseCodeChar = parseMorseCodeChar("A   .-");
     expect(morseCodeChar.character).toBe("A");
     expect(morseCodeChar.morse).toBe(".-");
   });
 
-  test("build morse code dictionary", () => {
+  it("build morse code dictionary", () => {
     const input = ["A   .-", "W   .--"];
     expect(buildTextToMorseDictionary(input)).toEqual({
       A: ".-",
@@ -33,7 +33,7 @@ describe("input parsing", () => {
     });
   });
 
-  test("parse full input into the different structures", () => {
+  it("parse full input into the different structures", () => {
     expect(parseInput(fullInput)).toEqual({
       encodedWords: [".--.....--"],
       dictionary: buildTextToMorseDictionary(inputMorseCodeDictionary),
@@ -43,7 +43,7 @@ describe("input parsing", () => {
 });
 
 describe("morse code encoding", () => {
-  test("encoding example 1", () => {
+  it("encoding example 1", () => {
     const text = "EEE";
     const dictionary = buildTextToMorseDictionary(inputMorseCodeDictionary);
     expect(encode(text, dictionary)).toBe("...");
@@ -52,7 +52,7 @@ describe("morse code encoding", () => {
 
 describe("morse code decoding", () => {
   describe("perfect match", () => {
-    test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' being part of the context, should return 'WHAT' as a perfect match", () => {
+    it("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' being part of the context, should return 'WHAT' as a perfect match", () => {
       const morse = ".--.....--";
       const dictionary = buildTextToMorseDictionary(inputMorseCodeDictionary);
       const context = ["WHAT"];
@@ -60,7 +60,7 @@ describe("morse code decoding", () => {
       expect(decode(morse, dictionary, context)).toBe("WHAT");
     });
 
-    test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' and 'ATHAT' in the context, should return the shortest perfect match, plus an exclamation mark", () => {
+    it("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' and 'ATHAT' in the context, should return the shortest perfect match, plus an exclamation mark", () => {
       const morse = ".--.....--";
       const dictionary = buildTextToMorseDictionary(inputMorseCodeDictionary);
       const context = ["WHAT", "ATHAT"];
@@ -70,7 +70,7 @@ describe("morse code decoding", () => {
   });
 
   describe("close match", () => {
-    test("given the morse code '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the best/closest valid word, plus a question mark and a mismatch indicator", () => {
+    it("given the morse code '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the best/closest valid word, plus a question mark and a mismatch indicator", () => {
       const morse = ".--.....--";
       const dictionary = buildTextToMorseDictionary(inputMorseCodeDictionary);
       const context = ["HAT"];
@@ -82,7 +82,7 @@ describe("morse code decoding", () => {
   });
 
   describe("no match", () => {
-    test("given the morse code '.--.....--' (possibly 'WHAT'), without 'WHAT' being part of the context, should return that no matching was found", () => {
+    it("given the morse code '.--.....--' (possibly 'WHAT'), without 'WHAT' being part of the context, should return that no matching was found", () => {
       const morse = ".--.....--";
       const dictionary = buildTextToMorseDictionary(inputMorseCodeDictionary);
       const context = [];
@@ -92,7 +92,7 @@ describe("morse code decoding", () => {
   });
 
   describe("processData", () => {
-    test("Sample input with various scenarios", () => {
+    it("Sample input with various scenarios", () => {
       const input = [
         "55",
         ...inputMorseCodeDictionary,
