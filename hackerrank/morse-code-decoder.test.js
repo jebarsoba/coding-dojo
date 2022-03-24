@@ -17,6 +17,7 @@ const {
 } = require("./morse-code-decoder.data");
 
 afterEach(() => (outputData = ""));
+
 describe("input parsing", () => {
   test("parse morse code dictionary", () => {
     const morseCodeChar = parseMorseCodeChar("A   .-");
@@ -40,6 +41,7 @@ describe("input parsing", () => {
     });
   });
 });
+
 describe("morse code encoding", () => {
   test("encoding example 1", () => {
     const text = "EEE";
@@ -47,6 +49,7 @@ describe("morse code encoding", () => {
     expect(encode(text, dictionary)).toBe("...");
   });
 });
+
 describe("morse code decoding", () => {
   describe("perfect match", () => {
     test("given the morse code '.--.....--' (possibly 'WHAT'), and 'WHAT' being part of the context, should return 'WHAT' as a perfect match", () => {
