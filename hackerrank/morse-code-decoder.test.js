@@ -3,6 +3,10 @@ let outputData = "";
 const storeLog = (input) => (outputData += `${input}-NEWLINE-`);
 console["log"] = jest.fn(storeLog);
 
+const fs = require("fs");
+const { promisify } = require("util");
+const readFileAsync = promisify(fs.readFile);
+
 const {
   parseMorseCodeChar,
   buildTextToMorseDictionary,
@@ -39,6 +43,22 @@ describe("input parsing", () => {
       dictionary: buildTextToMorseDictionary(inputMorseCodeDictionary),
       context: ["WHAT"],
     });
+  });
+
+  it("parse raw data", async () => {
+    const data = await readFileAsync(
+      "./morse-code-decoder.data.raw.txt",
+      "utf8"
+    );
+
+    const input = parseInput(data);
+
+    expect(input.dictionary["A"]).toBe(".-");
+    expect(input.dictionary["0"]).toBe("-----");
+
+    // TODO: Test context parsing...
+
+    // TODO: Test encoded words parsing...
   });
 });
 

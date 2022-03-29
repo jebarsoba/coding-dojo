@@ -3,8 +3,6 @@ const regExContext = /^\s*([A-Z0-9]+)\s*$/;
 const regExMorseCode = /^\s*([.-]+)\s*$/;
 
 function processData(input) {
-  // In HackerRank, the input is not an array but a string...
-  // So, the input requires a .split("\n") before calling the parseInput function.
   const { encodedWords, dictionary, context } = parseInput(input);
 
   for (const morse of encodedWords) {
@@ -17,6 +15,10 @@ function processData(input) {
  * Parse input, to create these structures: dictionary, context and encodedWords
  */
 function parseInput(input) {
+  if (!Array.isArray(input)) {
+    input = input.split("\n");
+  }
+
   return {
     encodedWords: input
       .map((line) => {
