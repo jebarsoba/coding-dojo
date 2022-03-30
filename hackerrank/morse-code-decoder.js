@@ -3,6 +3,9 @@ const regExMorseCodeRawDictionary = /\s*([A-Z0-9])(\s*)([.-]{1,6})\s*/;
 const regExContext = /^\s*([A-Z0-9]+)\s*$/;
 const regExMorseCode = /^\s*([.-]+)\s*$|^\s*([.-]+)\s*([.-]+)\s*$/;
 
+// Maximum number of different morse characters for a candidate word to be considered a partial match
+const PARTIAL_MATCH_TOLERANCE = 5;
+
 function processData(input) {
   const { encodedWords, dictionary, context } = parseInput(input);
 
@@ -106,7 +109,10 @@ function calculateMismatchIndicator(text1, text2) {
 function partialMatch(text1, text2) {
   const text = text1.length > text2.length ? text1 : text2;
   const partial = text1.length > text2.length ? text2 : text1;
-  return text.toLowerCase().indexOf(partial.toLowerCase()) > -1;
+  return (
+    text.toLowerCase().indexOf(partial.toLowerCase()) > -1 &&
+    Math.abs(text.length - partial.length) < PARTIAL_MATCH_TOLERANCE
+  );
 }
 
 function buildPerfectMatch(perfectMatches) {
@@ -120,7 +126,9 @@ function buildClosestMatch(partialMatches) {
   const closestMatch = partialMatches.sort(
     (a, b) => a.mismatch - b.mismatch
   )[0];
-  return `${closestMatch.word}? ${closestMatch.mismatch}`;
+  return `${closestMatch.word}?${
+    partialMatches.length > 1 ? " " + closestMatch.mismatch : ""
+  }`;
 }
 
 module.exports = {

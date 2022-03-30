@@ -79,6 +79,12 @@ describe("morse code encoding", () => {
     const dictionary = buildTextToMorseDictionary(inputMorseCodeDictionary);
     expect(encode(text, dictionary)).toBe("...");
   });
+
+  it("encoding example 2", () => {
+    const text = "WROTH";
+    const dictionary = buildTextToMorseDictionary(inputMorseCodeDictionary);
+    expect(encode(text, dictionary)).toBe(".--.-.----....");
+  });
 });
 
 describe("morse code decoding", () => {
@@ -101,14 +107,12 @@ describe("morse code decoding", () => {
   });
 
   describe("close match", () => {
-    it("given the morse code '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the best/closest valid word, plus a question mark and a mismatch indicator", () => {
+    it("given the morse code '.--.....--' (possibly 'WHAT'), and 'HAT' in the context, should return the best/closest valid word, plus a question mark", () => {
       const morse = ".--.....--";
       const dictionary = buildTextToMorseDictionary(inputMorseCodeDictionary);
       const context = ["HAT"];
 
-      // I don't remember exactly the rules for the computation of the mismatch indicator...
-      // I assume I have to show how many characters are different (3 in this case, comparing the morse from 'HAT' and 'WHAT').
-      expect(decode(morse, dictionary, context)).toBe("HAT? 3");
+      expect(decode(morse, dictionary, context)).toBe("HAT?");
     });
   });
 
@@ -144,13 +148,25 @@ describe("morse code decoding", () => {
       const stdout = outputData.split("-NEWLINE-");
       expect(stdout[0]).toBe("WHAT!");
       expect(stdout[1]).toBe("WHAT? 1");
-      expect(stdout[2]).toBe("MALE? 4");
+      expect(stdout[2]).toBe("MALE?");
       expect(stdout[3]).toBe("No matching word found");
     });
   });
 });
 
 describe("HackerRank tests, based on provided input and expected output", () => {
+  it("test case 4", async () => {
+    const data = await readFileAsync(
+      "./morse-code-decoder.data.raw.txt",
+      "utf8"
+    );
+    const input = parseInput(data);
+
+    expect(decode(".--.-.----..", input.dictionary, input.context)).toBe(
+      "WROTH?"
+    );
+  });
+
   it("test case 5", async () => {
     const data = await readFileAsync(
       "./morse-code-decoder.data.raw.txt",
