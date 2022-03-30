@@ -155,6 +155,16 @@ describe("morse code decoding", () => {
 });
 
 describe("HackerRank tests, based on provided input and expected output", () => {
+  it("test case 1", async () => {
+    const data = await readFileAsync(
+      "./morse-code-decoder.data.raw.txt",
+      "utf8"
+    );
+    const input = parseInput(data);
+
+    expect(decode(".--.....--", input.dictionary, input.context)).toBe("WHAT");
+  });
+
   it("test case 2", async () => {
     const data = await readFileAsync(
       "./morse-code-decoder.data.raw.txt",
@@ -239,5 +249,46 @@ describe("HackerRank tests, based on provided input and expected output", () => 
     expect(decode(".-...--..-.--", input.dictionary, input.context)).toBe(
       "READY"
     );
+  });
+
+  it("test case 10", async () => {
+    const data = await readFileAsync(
+      "./morse-code-decoder.data.raw.txt",
+      "utf8"
+    );
+    const input = parseInput(data);
+
+    expect(decode("----", input.dictionary, input.context)).toBe("TO");
+  });
+
+  it("test case 11", async () => {
+    const data = await readFileAsync(
+      "./morse-code-decoder.data.raw.txt",
+      "utf8"
+    );
+    const input = parseInput(data);
+
+    expect(decode("..--", input.dictionary, input.context)).toBe("IM!");
+  });
+
+  it("process full raw data alltogether", async () => {
+    const data = await readFileAsync(
+      "./morse-code-decoder.data.raw.txt",
+      "utf8"
+    );
+    processData(data);
+
+    const stdout = outputData.split("-NEWLINE-");
+    expect(stdout[0]).toBe("WHAT");
+    expect(stdout[1]).toBe("HATH");
+    expect(stdout[2]).toBe("GOD");
+    expect(stdout[3]).toBe("WROTH?");
+    expect(stdout[4]).toBe("WHAT");
+    expect(stdout[5]).toBe("AN");
+    expect(stdout[6]).toBe("EARTHQUAKE");
+    expect(stdout[7]).toBe("IM!");
+    expect(stdout[8]).toBe("READY");
+    expect(stdout[9]).toBe("TO");
+    expect(stdout[10]).toBe("IM!");
   });
 });
