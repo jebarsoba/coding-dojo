@@ -56,7 +56,18 @@ describe("input parsing", () => {
     expect(input.dictionary["A"]).toBe(".-");
     expect(input.dictionary["0"]).toBe("-----");
 
-    expect(input.context).toHaveLength(10);
+    expect(input.context).toEqual([
+      "AN",
+      "EARTHQUAKE",
+      "EAT",
+      "GOD",
+      "HATH",
+      "IM",
+      "READY",
+      "TO",
+      "WHAT",
+      "WROTH",
+    ]);
 
     expect(input.encodedWords).toHaveLength(11);
   });
@@ -136,5 +147,61 @@ describe("morse code decoding", () => {
       expect(stdout[2]).toBe("MALE? 4");
       expect(stdout[3]).toBe("No matching word found");
     });
+  });
+});
+
+describe("HackerRank tests, based on provided input and expected output", () => {
+  it("test case 5", async () => {
+    const data = await readFileAsync(
+      "./morse-code-decoder.data.raw.txt",
+      "utf8"
+    );
+    const input = parseInput(data);
+
+    expect(decode(".--.....--", input.dictionary, input.context)).toBe("WHAT");
+  });
+
+  it("test case 6", async () => {
+    const data = await readFileAsync(
+      "./morse-code-decoder.data.raw.txt",
+      "utf8"
+    );
+    const input = parseInput(data);
+
+    expect(decode(".--.", input.dictionary, input.context)).toBe("AN");
+  });
+
+  it("test case 7", async () => {
+    const data = await readFileAsync(
+      "./morse-code-decoder.data.raw.txt",
+      "utf8"
+    );
+    const input = parseInput(data);
+
+    expect(
+      decode("..-.-.-....--.-..-.--.-.", input.dictionary, input.context)
+    ).toBe("EARTHQUAKE");
+  });
+
+  it("test case 8", async () => {
+    const data = await readFileAsync(
+      "./morse-code-decoder.data.raw.txt",
+      "utf8"
+    );
+    const input = parseInput(data);
+
+    expect(decode("..--", input.dictionary, input.context)).toBe("IM!");
+  });
+
+  it("test case 9", async () => {
+    const data = await readFileAsync(
+      "./morse-code-decoder.data.raw.txt",
+      "utf8"
+    );
+    const input = parseInput(data);
+
+    expect(decode(".-...--..-.--", input.dictionary, input.context)).toBe(
+      "READY"
+    );
   });
 });

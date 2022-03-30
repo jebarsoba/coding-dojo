@@ -76,7 +76,7 @@ WROTH
 
 *(Note: The first line in Sample input 'n' corresponds to the number of test cases followed 'n' inputs)*
 
-# Output for the Sample Output
+# Output for the Sample Input
 ```
 WHAT
 HATH
