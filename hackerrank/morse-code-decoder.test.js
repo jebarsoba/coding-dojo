@@ -155,6 +155,26 @@ describe("morse code decoding", () => {
 });
 
 describe("HackerRank tests, based on provided input and expected output", () => {
+  it("test case 2", async () => {
+    const data = await readFileAsync(
+      "./morse-code-decoder.data.raw.txt",
+      "utf8"
+    );
+    const input = parseInput(data);
+
+    expect(decode(".....--....", input.dictionary, input.context)).toBe("HATH");
+  });
+
+  it("test case 3", async () => {
+    const data = await readFileAsync(
+      "./morse-code-decoder.data.raw.txt",
+      "utf8"
+    );
+    const input = parseInput(data);
+
+    expect(decode("--.----..", input.dictionary, input.context)).toBe("GOD");
+  });
+
   it("test case 4", async () => {
     const data = await readFileAsync(
       "./morse-code-decoder.data.raw.txt",
