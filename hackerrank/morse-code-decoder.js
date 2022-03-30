@@ -1,6 +1,7 @@
+// Mental note: Next time, don't use regex (;-_-)
 const regExMorseCodeRawDictionary = /\s*([A-Z0-9])(\s*)([.-]{1,6})\s*/;
 const regExContext = /^\s*([A-Z0-9]+)\s*$/;
-const regExMorseCode = /^\s*([.-]+)\s*$/;
+const regExMorseCode = /^\s*([.-]+)\s*$|^\s*([.-]+)\s*([.-]+)\s*$/;
 
 function processData(input) {
   const { encodedWords, dictionary, context } = parseInput(input);
@@ -21,10 +22,13 @@ function parseInput(input) {
 
   return {
     encodedWords: input
-      .map((line) => {
+      .reduce((words, line) => {
         const groups = regExMorseCode.exec(line);
-        return groups ? groups[1] : null;
-      })
+        for (let i = 1; groups && i <= groups.length; i++) {
+          words.push(groups[i]);
+        }
+        return words;
+      }, [])
       .filter((line) => line),
     dictionary: buildTextToMorseDictionary(
       input.filter((line) => regExMorseCodeRawDictionary.exec(line))

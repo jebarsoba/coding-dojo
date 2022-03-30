@@ -56,9 +56,9 @@ describe("input parsing", () => {
     expect(input.dictionary["A"]).toBe(".-");
     expect(input.dictionary["0"]).toBe("-----");
 
-    // TODO: Test context parsing...
+    expect(input.context).toHaveLength(10);
 
-    // TODO: Test encoded words parsing...
+    expect(input.encodedWords).toHaveLength(11);
   });
 });
 
