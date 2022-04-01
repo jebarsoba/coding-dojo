@@ -1,3 +1,9 @@
+# Background
+I received this HackerRank challenge and had to deliver it within a 3 hours timespan. Despite I couldn't finish it in one-shot, I took screenshots (which then I OCRed), and that's how I got the chance to continue with it. After quite a lot of refactoring from my original submitted answer, I got all tests running successfully.
+
+* [Tests (TDD approach)](morse-code-decoder.test.js)
+* [Solution](morse-code-decoder.js)
+
 # Description
 Samuel F. B. Morse is best known for the coding scheme that carries his name. Morse code is still used in international radio communication. The coding of text using Morse code is straightforward. Each character is translated to a predefined sequence of dits and dahs (the elements of Morse code). (Case is insignificant.) Dits are represented as periods (".") and dahs are represented as hyphens or minus signs ("-"). Each element is transmitted by sending a signal for some period of time. A dit is rather short, and a dah is, in perfectly formed code, three times as long as a dit. A short silent space appears between elements, with a longer space between characters. A still longer space separates words. This dependence on the spacing and timing of elements means that Morse code operators sometimes do not send perfect code. This results in difficulties for the receiving operator, but frequently the message can be decoded depending on context.
 In this problem, we consider reception of words in Morse code without spacing between letters. Without the spacing, it is possible for multiple words to be coded the same. For example, if the message "dit dit dit" were received, it could be interpreted as "EEE", "EI", "IE" or "S" based on the coding scheme shown in the sample input. To decide between these multiple interpretations, we assume a particular context by expecting each received word to appear in a dictionary.
@@ -87,4 +93,6 @@ AN
 EARTHQUAKE
 IM!
 READY
+TO
+IM!
 ```

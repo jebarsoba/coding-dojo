@@ -1,3 +1,9 @@
+/**
+ * "Space-less" morse code decoder HackerRank challenge
+ *
+ * Problem background and description: https://github.com/jebarsoba/coding-dojo/blob/master/hackerrank/morse-code-decoder.md
+ */
+
 // Mental note: Next time, don't use regex (;-_-)
 const regExMorseCodeRawDictionary = /\s*([A-Z0-9])(\s*)([.-]{1,6})\s*/;
 const regExContext = /^\s*([A-Z0-9]+)\s*$/;
