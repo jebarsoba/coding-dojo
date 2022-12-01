@@ -10,6 +10,7 @@ Here's the directory structure and how to run each project:
 - __/others__
   - /__eloquent-javascript__: my solutions for the [Eloquent JavaScript](https://eloquentjavascript.net/) book exercises (run with node <file.js>)
   - /__javascript-interview-questions__: npm t
+  - /__jsnad__: my solutions for the [LFW211: Node.js Application Development (Linux Foundation)](https://training.linuxfoundation.org/training/) lab exercises
   - /__msgpack-lite-sandbox__: playing with msgpack (node index.js)
   - /__openui5__: tutorials from the [OpenUI5](https://openui5.hana.ondemand.com/#/topic) documentation website (check the wiki md file on each project folder)
   - /__qlikview-examples__: [Getting Started with QlikView Series](https://community.qlik.com/docs/DOC-1986#getStart) tutorials

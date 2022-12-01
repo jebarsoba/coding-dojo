@@ -1,0 +1,10 @@
+{
+  "name": "jsnad-lab-solutions",
+  "description": "My solutions for the LFW211 Node.js Application Development lab exercises",
+  "scripts": {
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^2.8.0"
+  }
+}
