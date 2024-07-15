@@ -20,4 +20,5 @@ Here's the directory structure and how to run each project:
     - /csharp-solutions: ./DSAndA.Test/dotnet test
     - /javascript-solutions: npm t
     - /typescript-solutions: npm t
+  - __The Complete Python Bootcamp, From Zero to Hero in Python__, /python
 - __/top__: exercises from the [The Odin Project](https://www.theodinproject.com/)
